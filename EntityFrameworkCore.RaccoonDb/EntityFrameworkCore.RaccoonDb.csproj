@@ -10,4 +10,8 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\RaccoonDB\RaccoonDB.csproj" />
+    </ItemGroup>
+
 </Project>
