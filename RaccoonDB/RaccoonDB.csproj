@@ -6,7 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Infrastructure" />
+      <Folder Include="Internal\Querying\Generated" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.2" />
     </ItemGroup>
 
 </Project>
