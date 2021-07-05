@@ -4,6 +4,9 @@
     {
         public string TableName { get; set; } = null!;
         public TableColumnModel ColumnModel { get; set; } = null!;
+
+        public override string ToString() =>
+            $"{nameof(AddColumnModel)}[{nameof(TableName)}: '{TableName}', {ColumnModel}: '{ColumnModel}']";
     }
     
     public class AddColumnVisitor : RaccoonSQLBaseVisitor<AddColumnModel>

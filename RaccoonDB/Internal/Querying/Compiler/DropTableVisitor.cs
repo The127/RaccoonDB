@@ -3,6 +3,9 @@
     public class DropTableModel
     {
         public string TableName { get; set; } = null!;
+
+        public override string ToString() =>
+            $"{nameof(DropTableModel)}[{nameof(TableName)}: '{TableName}']";
     }
     
     public class DropTableVisitor : RaccoonSQLBaseVisitor<DropTableModel>

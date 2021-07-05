@@ -4,6 +4,9 @@
     {
         public string IndexName { get; set; } = null!;
         public string TableName { get; set; } = null!;
+
+        public override string ToString() =>
+            $"{nameof(DropIndexModel)}[{nameof(IndexName)}: '{IndexName}', {nameof(TableName)}: '{TableName}']";
     }
     
     public class DropIndexVisitor : RaccoonSQLBaseVisitor<DropIndexModel>

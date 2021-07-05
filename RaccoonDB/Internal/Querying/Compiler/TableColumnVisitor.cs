@@ -13,6 +13,18 @@ namespace RaccoonDB.Internal.Querying.Compiler
         public string? ForeignTableName { get; set; }
         public string? ForeignColumnName { get; set; }
         public bool AutoValue { get; set; }
+
+        public override string ToString() =>
+            $"{nameof(TableColumnModel)}[" +
+            $"{nameof(ColumnName)}: '{ColumnName}'," +
+            $" {nameof(ColumnType)}: '{ColumnType}'," +
+            $" {nameof(NotNull)}: '{NotNull}', " +
+            $"{nameof(Unique)}: '{Unique}', " +
+            $"{nameof(AutoValue)}: '{AutoValue}', " +
+            $"{nameof(PrimaryKey)}: '{PrimaryKey}', " +
+            $"{nameof(ForeignKey)}: '{ForeignKey}', " +
+            $"{nameof(ForeignTableName)}: '{ForeignTableName}', " +
+            $"{nameof(ForeignColumnName)}: '{ForeignColumnName}']";
     }
     
     public class TableColumnVisitor : RaccoonSQLBaseVisitor<TableColumnModel>

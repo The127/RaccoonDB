@@ -3,6 +3,9 @@
     public class ExplainTableModel
     {
         public string TableName { get; set; } = null!;
+
+        public override string ToString() =>
+            $"{nameof(ExplainTableModel)}[{nameof(TableName)}: '{TableName}']";
     }
     
     public class ExplainTableVisitor : RaccoonSQLBaseVisitor<ExplainTableModel>

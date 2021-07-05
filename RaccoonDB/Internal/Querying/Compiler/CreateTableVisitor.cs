@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace RaccoonDB.Internal.Querying.Compiler
 {
@@ -6,6 +7,9 @@ namespace RaccoonDB.Internal.Querying.Compiler
     {
         public string TableName { get; set; } = null!;
         public List<TableColumnModel> Columns { get; } = new();
+
+        public override string ToString() =>
+            $"{nameof(CreateTableModel)}[{nameof(TableName)}: '{TableName}', {nameof(Columns)}: '{string.Join(", " , Columns.Select(x => x.ToString()))}']";
     }
     
     public class CreateTableVisitor : RaccoonSQLBaseVisitor<CreateTableModel>

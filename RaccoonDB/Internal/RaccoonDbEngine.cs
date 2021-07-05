@@ -1,4 +1,6 @@
-﻿using RaccoonDB.Interface;
+﻿using System;
+using System.IO;
+using RaccoonDB.Interface;
 using RaccoonDB.Internal.Querying;
 
 namespace RaccoonDB.Internal
@@ -10,7 +12,10 @@ namespace RaccoonDB.Internal
         
         public RaccoonDbEngine(string connectionString)
         {
-            
+            if (!File.Exists(connectionString))
+            {
+                using var stream = File.Create(connectionString);
+            }
         }
 
         public ResultSet ExecuteSql(string sql, object[] @params)
@@ -18,6 +23,7 @@ namespace RaccoonDB.Internal
             if (!_queryCache.TryGetCompiledQuery(sql, out var compiledQuery))
             {
                 compiledQuery = _queryCompiler.Compile(sql);
+                _queryCache.CacheCompiledQuery(sql, compiledQuery);
             }
 
             return compiledQuery.Execute(@params);

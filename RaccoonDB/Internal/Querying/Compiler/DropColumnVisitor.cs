@@ -3,6 +3,9 @@
     public class DropColumnModel
     {
         public string ColumnName { get; set; } = null!;
+
+        public override string ToString() =>
+            $"{nameof(DropColumnModel)}:[{nameof(ColumnName)}: '{ColumnName}']";
     }
     
     public class DropColumnVisitor : RaccoonSQLBaseVisitor<DropColumnModel>

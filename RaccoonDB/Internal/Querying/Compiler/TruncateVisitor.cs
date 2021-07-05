@@ -3,6 +3,9 @@
     public class TruncateModel
     {
         public string TableName { get; set; } = null!;
+
+        public override string ToString() =>
+            $"{nameof(TruncateModel)}[{nameof(TableName)}: '{TableName}']";
     }
     
     public class TruncateVisitor : RaccoonSQLBaseVisitor<TruncateModel>

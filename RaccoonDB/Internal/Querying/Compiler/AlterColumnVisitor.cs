@@ -3,6 +3,9 @@
     public class AlterColumnModel
     {
         public TableColumnModel ColumnModel { get; set; } = null!;
+
+        public override string ToString() =>
+            $"{nameof(AlterColumnModel)}[{nameof(ColumnModel)}: '{ColumnModel}']";
     }
     
     public class AlterColumnVisitor : RaccoonSQLBaseVisitor<AlterColumnModel>
