@@ -2,6 +2,7 @@
 using System.IO;
 using RaccoonDB.Interface;
 using RaccoonDB.Internal.Querying;
+using RaccoonDB.Internal.Storage;
 
 namespace RaccoonDB.Internal
 {
@@ -18,7 +19,7 @@ namespace RaccoonDB.Internal
             }
         }
 
-        public ResultSet ExecuteSql(string sql, object[] @params)
+        public ResultSet ExecuteSql(string sql, object[] @params, IRaccoonDbStorageProvider raccoonDbStorageProvider)
         {
             if (!_queryCache.TryGetCompiledQuery(sql, out var compiledQuery))
             {
@@ -26,7 +27,7 @@ namespace RaccoonDB.Internal
                 _queryCache.CacheCompiledQuery(sql, compiledQuery);
             }
 
-            return compiledQuery.Execute(@params);
+            return compiledQuery.Execute(@params, raccoonDbStorageProvider);
         }
     }
 }

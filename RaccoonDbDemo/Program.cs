@@ -1,15 +1,6 @@
 ﻿using System;
 using RaccoonDB.Interface;
 
-namespace RaccoonDbDemo
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            RaccoonDbDriver raccoonDbDriver = new RaccoonDbDriver("db.raccoon");
-            var result = raccoonDbDriver.ExecuteSql("create table test (foo int);");
-            Console.WriteLine(result);
-        }
-    }
-}
+var raccoonDbDriver = new RaccoonDbDriver("db.raccoon");
+var result = raccoonDbDriver.ExecuteSql("create table test (foo int, cum string not null unique auto);");
+Console.WriteLine(result);

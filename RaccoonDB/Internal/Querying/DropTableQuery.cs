@@ -1,5 +1,6 @@
 ﻿using RaccoonDB.Interface;
 using RaccoonDB.Internal.Querying.Compiler;
+using RaccoonDB.Internal.Storage;
 
 namespace RaccoonDB.Internal.Querying
 {
@@ -12,9 +13,14 @@ namespace RaccoonDB.Internal.Querying
             _model = model;
         }
 
-        public override ResultSet Execute(object[] @params)
+        public override ResultSet Execute(object[] @params, IRaccoonDbStorageProvider raccoonDbStorageProvider)
         {
-            throw new System.NotImplementedException();
+            var result = new ResultSet();
+            raccoonDbStorageProvider.Write(writer =>
+            {
+                writer.DropTable(_model);
+            });
+            return result;
         }
     }
 }
