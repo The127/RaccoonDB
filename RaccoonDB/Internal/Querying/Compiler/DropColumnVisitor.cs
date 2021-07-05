@@ -8,7 +8,7 @@
             $"{nameof(DropColumnModel)}:[{nameof(ColumnName)}: '{ColumnName}']";
     }
     
-    public class DropColumnVisitor : RaccoonSQLBaseVisitor<DropColumnModel>
+    public class DropColumnVisitor : RacconDbCustomVisitorBase<DropColumnModel>
     {
         private readonly DropColumnModel _model = new();
 

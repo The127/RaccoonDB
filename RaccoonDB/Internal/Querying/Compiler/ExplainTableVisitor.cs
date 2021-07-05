@@ -8,7 +8,7 @@
             $"{nameof(ExplainTableModel)}[{nameof(TableName)}: '{TableName}']";
     }
     
-    public class ExplainTableVisitor : RaccoonSQLBaseVisitor<ExplainTableModel>
+    public class ExplainTableVisitor : RacconDbCustomVisitorBase<ExplainTableModel>
     {
         private readonly ExplainTableModel _model = new();
 

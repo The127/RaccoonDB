@@ -1,6 +1,6 @@
 ﻿namespace RaccoonDB.Internal.Querying.Compiler
 {
-    public class AlterQueryVisitor : RaccoonSQLBaseVisitor<CompiledQuery>
+    public class AlterQueryVisitor : RacconDbCustomVisitorBase<CompiledQuery>
     {
         private RaccoonSQLParser.TableContext _tableContext = null!; 
         

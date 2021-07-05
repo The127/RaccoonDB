@@ -1,6 +1,6 @@
 ﻿namespace RaccoonDB.Internal.Querying.Compiler
 {
-    public class DeleteQueryVisitor : RaccoonSQLBaseVisitor<CompiledQuery>
+    public class DeleteQueryVisitor : RacconDbCustomVisitorBase<CompiledQuery>
     {
         //TODO
     }

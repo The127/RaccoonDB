@@ -1,6 +1,6 @@
 ﻿namespace RaccoonDB.Internal.Querying.Compiler
 {
-    public class InsertQueryVisitor : RaccoonSQLBaseVisitor<CompiledQuery>
+    public class InsertQueryVisitor : RacconDbCustomVisitorBase<CompiledQuery>
     {
         //TODO
     }

@@ -9,7 +9,7 @@
             $"{nameof(DropIndexModel)}[{nameof(IndexName)}: '{IndexName}', {nameof(TableName)}: '{TableName}']";
     }
     
-    public class DropIndexVisitor : RaccoonSQLBaseVisitor<DropIndexModel>
+    public class DropIndexVisitor : RacconDbCustomVisitorBase<DropIndexModel>
     {
         private readonly DropIndexModel _model = new();
 

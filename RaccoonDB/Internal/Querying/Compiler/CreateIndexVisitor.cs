@@ -10,7 +10,7 @@ namespace RaccoonDB.Internal.Querying.Compiler
         public List<string> Columns { get; } = new();
     }
     
-    public class CreateIndexVisitor : RaccoonSQLBaseVisitor<CreateIndexModel>
+    public class CreateIndexVisitor : RacconDbCustomVisitorBase<CreateIndexModel>
     {
         private readonly CreateIndexModel _model = new();
 

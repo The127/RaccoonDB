@@ -8,7 +8,7 @@
             $"{nameof(AlterColumnModel)}[{nameof(ColumnModel)}: '{ColumnModel}']";
     }
     
-    public class AlterColumnVisitor : RaccoonSQLBaseVisitor<AlterColumnModel>
+    public class AlterColumnVisitor : RacconDbCustomVisitorBase<AlterColumnModel>
     {
         private readonly AlterColumnModel _model = new();
 

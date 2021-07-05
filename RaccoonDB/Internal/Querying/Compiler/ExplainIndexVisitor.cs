@@ -9,7 +9,7 @@
             $"{nameof(ExplainIndexModel)}[{nameof(IndexName)}: '{IndexName}', {nameof(TableName)}: '{TableName}']";
     }
     
-    public class ExplainIndexVisitor : RaccoonSQLBaseVisitor<ExplainIndexModel>
+    public class ExplainIndexVisitor : RacconDbCustomVisitorBase<ExplainIndexModel>
     {
         private readonly ExplainIndexModel _model = new();
 

@@ -2,7 +2,7 @@
 
 namespace RaccoonDB.Internal.Querying.Compiler
 {
-    public class QueryVisitor : RaccoonSQLBaseVisitor<CompiledQuery>
+    public class QueryVisitor : RacconDbCustomVisitorBase<CompiledQuery>
     {
         public override CompiledQuery VisitCreateQuery(RaccoonSQLParser.CreateQueryContext context)
         {

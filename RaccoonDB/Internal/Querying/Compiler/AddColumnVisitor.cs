@@ -9,7 +9,7 @@
             $"{nameof(AddColumnModel)}[{nameof(TableName)}: '{TableName}', {ColumnModel}: '{ColumnModel}']";
     }
     
-    public class AddColumnVisitor : RaccoonSQLBaseVisitor<AddColumnModel>
+    public class AddColumnVisitor : RacconDbCustomVisitorBase<AddColumnModel>
     {
         private readonly AddColumnModel _model = new();
 

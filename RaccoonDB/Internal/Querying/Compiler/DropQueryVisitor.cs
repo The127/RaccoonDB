@@ -1,6 +1,6 @@
 ﻿namespace RaccoonDB.Internal.Querying.Compiler
 {
-    public class DropQueryVisitor : RaccoonSQLBaseVisitor<CompiledQuery>
+    public class DropQueryVisitor : RacconDbCustomVisitorBase<CompiledQuery>
     {
         public override CompiledQuery VisitIndex(RaccoonSQLParser.IndexContext context)
         {

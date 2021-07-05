@@ -17,8 +17,8 @@ namespace RaccoonDB.Internal.Querying.Compiler
         public override string ToString() =>
             $"{nameof(TableColumnModel)}[" +
             $"{nameof(ColumnName)}: '{ColumnName}'," +
-            $" {nameof(ColumnType)}: '{ColumnType}'," +
-            $" {nameof(NotNull)}: '{NotNull}', " +
+            $"{nameof(ColumnType)}: '{ColumnType}'," +
+            $"{nameof(NotNull)}: '{NotNull}', " +
             $"{nameof(Unique)}: '{Unique}', " +
             $"{nameof(AutoValue)}: '{AutoValue}', " +
             $"{nameof(PrimaryKey)}: '{PrimaryKey}', " +
@@ -27,12 +27,18 @@ namespace RaccoonDB.Internal.Querying.Compiler
             $"{nameof(ForeignColumnName)}: '{ForeignColumnName}']";
     }
     
-    public class TableColumnVisitor : RaccoonSQLBaseVisitor<TableColumnModel>
+    public class TableColumnVisitor : RacconDbCustomVisitorBase<TableColumnModel>
     {
         private readonly TableColumnModel _model = new(); 
 
         public override TableColumnModel VisitTableColumn(RaccoonSQLParser.TableColumnContext context)
         {
+            if(string.IsNullOrWhiteSpace(context.name?.Text))
+                throw new SqlCompilationException($"missing column name", context);
+            
+            if(string.IsNullOrWhiteSpace(context.type?.Text))
+                throw new SqlCompilationException($"missing column type", context);
+            
             _model.ColumnName = context.name.Text;
             _model.ColumnType = context.type.Text;
             VisitChildren(context);

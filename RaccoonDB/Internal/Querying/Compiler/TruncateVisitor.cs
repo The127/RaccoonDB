@@ -8,7 +8,7 @@
             $"{nameof(TruncateModel)}[{nameof(TableName)}: '{TableName}']";
     }
     
-    public class TruncateVisitor : RaccoonSQLBaseVisitor<TruncateModel>
+    public class TruncateVisitor : RacconDbCustomVisitorBase<TruncateModel>
     {
         private readonly TruncateModel _model = new();
 

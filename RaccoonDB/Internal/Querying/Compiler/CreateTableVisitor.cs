@@ -12,7 +12,7 @@ namespace RaccoonDB.Internal.Querying.Compiler
             $"{nameof(CreateTableModel)}[{nameof(TableName)}: '{TableName}', {nameof(Columns)}: '{string.Join(", " , Columns.Select(x => x.ToString()))}']";
     }
     
-    public class CreateTableVisitor : RaccoonSQLBaseVisitor<CreateTableModel>
+    public class CreateTableVisitor : RacconDbCustomVisitorBase<CreateTableModel>
     {
         private readonly CreateTableModel _model = new();
 

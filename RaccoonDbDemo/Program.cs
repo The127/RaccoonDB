@@ -7,10 +7,8 @@ namespace RaccoonDbDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
             RaccoonDbDriver raccoonDbDriver = new RaccoonDbDriver("db.raccoon");
-            var result = raccoonDbDriver.ExecuteSql("create table test;");
+            var result = raccoonDbDriver.ExecuteSql("create table test (foo int);");
             Console.WriteLine(result);
         }
     }
