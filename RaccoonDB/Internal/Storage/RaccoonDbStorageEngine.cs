@@ -128,13 +128,22 @@ namespace RaccoonDB.Internal.Storage
             throw new System.NotImplementedException();
         }
 
-        public Table.TableInformation ExplainTable(ExplainTableModel model)
+        public TableInformation ExplainTable(ExplainTableModel model)
         {
             var exists = _tables.ContainsKey(model.TableName);
             if(!exists)
                 throw new RacconDbSchemaException($"unknown table name '{model.TableName}'");
 
             return _tables[model.TableName].Explain();
+        }
+
+        public IndexInformation ExplainIndex(ExplainIndexModel model)
+        {
+            var exists = _tables.ContainsKey(model.TableName);
+            if(!exists)
+                throw new RacconDbSchemaException($"unknown table name '{model.TableName}'");
+            
+            return _tables[model.TableName].ExplainIndex(model);
         }
     }
 }

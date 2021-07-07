@@ -15,7 +15,24 @@ namespace RaccoonDB.Internal.Querying
 
         public override ResultSet Execute(object[] @params, IRaccoonDbStorageProvider raccoonDbStorageProvider)
         {
-            throw new System.NotImplementedException();
+            IndexInformation indexInfo = null!;
+            raccoonDbStorageProvider.Read(reader =>
+            {
+                indexInfo = reader.ExplainIndex(_model);
+            });
+            var resultSet = new ResultSet(
+                "index_name",
+                "unique",
+                "column_names"
+            );
+            
+            resultSet.AddRow(new ResultRow(
+                indexInfo.Name,
+                indexInfo.Unique,
+                string.Join(", ", indexInfo.ColumnNames)
+            ));
+            
+            return resultSet;
         }
     }
 }

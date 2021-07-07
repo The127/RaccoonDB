@@ -1,59 +1,28 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using CSharpTest.Net.Collections;
-using CSharpTest.Net.Data;
 using CSharpTest.Net.Serialization;
 using RaccoonDB.Interface;
 using RaccoonDB.Internal.Querying.Compiler;
-using RaccoonDB.Internal.Storage.Scanning;
 
 namespace RaccoonDB.Internal.Storage
 {
-    public sealed class Table : IDisposable
+    internal sealed class Table : IDisposable
     {
-        // ReSharper disable once ClassNeverInstantiated.Local
-        public class TableInformation
-        {
-            public string TableName { get; set; } = null!;
-            public List<ColumnInformation> Columns { get; set; } = new();
-            public List<IndexInformation> Indexes { get; set; } = new();
-
-            // ReSharper disable once ClassNeverInstantiated.Local
-            public class ColumnInformation
-            {
-                public string Name { get; set; } = null!;
-                public string Type { get; set; } = null!;
-                public bool Unique { get; set; }
-                public bool NotNull { get; set; }
-                public bool PrimaryKey { get; set; }
-                public bool ForeignKey { get; set; }
-                public string? ForeignTable { get; set; }
-                public string? ForeignColumn { get; set; }
-                public bool Auto { get; set; }
-            }
-
-            // ReSharper disable once ClassNeverInstantiated.Local
-            public class IndexInformation
-            {
-                public string Name { get; set; } = null!;
-                public bool Unique { get; set; }
-                public List<string> ColumnNames { get; set; } = new();
-            }
-        }
+        
         
         private readonly string _name;
         private readonly string _directory;
 
         private readonly TableInformation _tableInformation;
         private BPlusTree<Guid, string> _dataTree;
+
+        private Dictionary<string, Index> _indices = new();
+        private TableReader _reader;
 
         private Table(string name, string directory, TableInformation tableInformation)
         {
@@ -68,6 +37,7 @@ namespace RaccoonDB.Internal.Storage
             };
             
             _dataTree = new BPlusTree<Guid, string>(options);
+            _reader = new TableReader(_dataTree, _tableInformation);
         }
 
         public static Table OpenTable(string tableName, string dbDirectory)
@@ -92,11 +62,11 @@ namespace RaccoonDB.Internal.Storage
             var tableInformation = new TableInformation
             {
                 TableName = model.TableName,
-                Columns = model.Columns.Select(x => new TableInformation.ColumnInformation
+                Columns = model.Columns.Select(x => new ColumnInformation
                 {
                     Auto = x.AutoValue,
                     Name = x.ColumnName,
-                    Type = x.ColumnType,
+                    TypeName = x.ColumnType,
                     Unique = x.Unique,
                     ForeignColumn = x.ForeignColumnName,
                     ForeignKey = x.ForeignKey,
@@ -146,18 +116,51 @@ namespace RaccoonDB.Internal.Storage
 
         public void CreateIndex(CreateIndexModel model)
         {
+            var index = new Index(_directory,
+                _name,
+                model.IndexName,
+                model.Unique,
+                model.Columns[0],
+                _tableInformation.Columns.First(x => x.Name == model.Columns[0]).Type, 
+                _reader);
             
+            _tableInformation.Indexes.Add(new IndexInformation
+            {
+                Name = model.IndexName,
+                Unique = model.Unique,
+                ColumnNames = model.Columns.ToList(),
+            });
+            
+            _indices[model.Columns[0]] = index;
+            
+            WriteInfoFile();
         }
 
         public void DropIndex(DropIndexModel model)
         {
             if (_tableInformation.Indexes.All(x => x.Name != model.IndexName))
                 throw new RacconDbSchemaException($"index {model.IndexName} not found on table {model.TableName}");
+
+            var indexIndex = _tableInformation.Indexes.FindIndex(x => x.Name == model.IndexName);
+            _tableInformation.Indexes.RemoveAt(indexIndex);
+
+            var index = _indices[model.IndexName];
+            index.Drop();
+            
+            WriteInfoFile();
         }
 
-        public void ExplainIndex(ExplainIndexModel model)
+        public IndexInformation ExplainIndex(ExplainIndexModel model)
         {
-            
+            if (_tableInformation.Indexes.All(x => x.Name != model.IndexName))
+                throw new RacconDbSchemaException($"index {model.IndexName} not found on table {model.TableName}");
+
+            return _tableInformation.Indexes.Select(x => new IndexInformation
+            {
+                Name = x.Name,
+                Unique = x.Unique,
+                ColumnNames = x.ColumnNames.ToList(),
+            }).First(x => x.Name == model.IndexName);
         }
 
         public void AddColumn(AddColumnModel model)
@@ -175,10 +178,27 @@ namespace RaccoonDB.Internal.Storage
             
         }
         
-        public Task<IEnumerable<ResultRow>> ScanAsync(Predicate<ResultRow> predicate)
+        public IEnumerable<ResultRow> Select(string[] columns, List<QueryFilter> queryFilters)
         {
+            var set = queryFilters.First().Evaluate(_reader).ToHashSet();
+            foreach (var queryFilter in queryFilters.Skip(1))
+            {
+                var containedGuids = queryFilter.Evaluate(_reader);
+                set.IntersectWith(containedGuids);
+                
+                if(!set.Any())
+                    yield break;
+            }
             
-            return Task.FromResult(Enumerable.Empty<ResultRow>());
+            foreach (var guid in set)
+            {
+                var resultRow = _reader.GetRow(guid, columns);
+                
+                if(resultRow == null)
+                    continue;
+                
+                yield return resultRow;
+            }
         }
 
         public void Drop()
@@ -198,11 +218,11 @@ namespace RaccoonDB.Internal.Storage
             new()
             {
                 TableName = _tableInformation.TableName,
-                Columns = _tableInformation.Columns.Select(x => new TableInformation.ColumnInformation
+                Columns = _tableInformation.Columns.Select(x => new ColumnInformation
                 {
                     Auto = x.Auto,
                     Name = x.Name,
-                    Type = x.Type,
+                    TypeName = x.TypeName,
                     Unique = x.Unique,
                     ForeignColumn = x.ForeignColumn,
                     ForeignKey = x.ForeignKey,
@@ -210,7 +230,7 @@ namespace RaccoonDB.Internal.Storage
                     NotNull = x.NotNull,
                     PrimaryKey = x.PrimaryKey,
                 }).ToList(),
-                Indexes = _tableInformation.Indexes.Select(x => new TableInformation.IndexInformation
+                Indexes = _tableInformation.Indexes.Select(x => new IndexInformation
                 {
                     Name = x.Name,
                     Unique = x.Unique,

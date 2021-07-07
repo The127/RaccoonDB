@@ -15,7 +15,7 @@ namespace RaccoonDB.Internal.Querying
 
         public override ResultSet Execute(object[] @params, IRaccoonDbStorageProvider raccoonDbStorageProvider)
         {
-            Table.TableInformation information = null!;
+            TableInformation information = null!;
             
             raccoonDbStorageProvider.Read(reader =>
             {
@@ -40,7 +40,7 @@ namespace RaccoonDB.Internal.Querying
                 {
                     result.AddRow(new ResultRow(
                         columnInformation.Name,
-                        columnInformation.Type,
+                        columnInformation.TypeName,
                         columnInformation.Unique,
                         columnInformation.NotNull,
                         columnInformation.Auto,

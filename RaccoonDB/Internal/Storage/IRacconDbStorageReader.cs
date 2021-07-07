@@ -4,6 +4,7 @@ namespace RaccoonDB.Internal.Storage
 {
     public interface IRacconDbStorageReader
     {
-        Table.TableInformation ExplainTable(ExplainTableModel model);
+        TableInformation ExplainTable(ExplainTableModel model);
+        IndexInformation ExplainIndex(ExplainIndexModel model);
     }
 }
