@@ -12,6 +12,9 @@ namespace RaccoonDB.Interface
 
         private Dictionary<string, int> _columnNames = new();
 
+        public int ResultSize => _rows.Count;
+        public int AffectedRows { get; set; } = 0;
+
         public ResultSet(params string[] columnNames)
         {
             foreach (var columnName in columnNames)
@@ -38,13 +41,13 @@ namespace RaccoonDB.Interface
 
         public override string ToString()
         {
-            var sb = new StringBuilder($"{nameof(ResultSet)}[\n");
+            var sb = new StringBuilder($"{nameof(ResultSet)}[{nameof(AffectedRows)}: '{AffectedRows}',\n");
 
-            sb.Append("0: ")
+            sb.Append("H: ")
                 .Append(new ResultRow(_columnNames.Keys))
                 .Append('\n');
             
-            int index = 1;
+            int index = 0;
             foreach (var tableRow in _rows)
             {
                 sb.Append(index++)
