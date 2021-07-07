@@ -1,8 +1,6 @@
-﻿using System;
-using Antlr4.Runtime;
-using RaccoonDB.Internal.Querying.Compiler;
+﻿using Antlr4.Runtime;
 
-namespace RaccoonDB.Internal.Querying
+namespace RaccoonDB.Internal.Querying.Compiler
 {
     public class SqlQueryCompiler
     {

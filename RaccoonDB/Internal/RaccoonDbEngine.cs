@@ -2,6 +2,7 @@
 using System.IO;
 using RaccoonDB.Interface;
 using RaccoonDB.Internal.Querying;
+using RaccoonDB.Internal.Querying.Compiler;
 using RaccoonDB.Internal.Storage;
 
 namespace RaccoonDB.Internal
