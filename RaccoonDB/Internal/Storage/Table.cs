@@ -9,9 +9,11 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using CSharpTest.Net.Collections;
+using CSharpTest.Net.Data;
 using CSharpTest.Net.Serialization;
 using RaccoonDB.Interface;
 using RaccoonDB.Internal.Querying.Compiler;
+using RaccoonDB.Internal.Storage.Scanning;
 
 namespace RaccoonDB.Internal.Storage
 {
@@ -50,16 +52,22 @@ namespace RaccoonDB.Internal.Storage
         private readonly string _name;
         private readonly string _directory;
 
-        private TableInformation _tableInformation;
-        
-        private FileStream _dataStream;
+        private readonly TableInformation _tableInformation;
+        private BPlusTree<Guid, string> _dataTree;
 
-        private Table(string name, string directory, TableInformation tableInformation, FileStream dataStream)
+        private Table(string name, string directory, TableInformation tableInformation)
         {
             _name = name;
             _directory = directory;
             _tableInformation = tableInformation;
-            _dataStream = dataStream;
+            
+            BPlusTree<Guid, string>.Options options = new(PrimitiveSerializer.Guid, PrimitiveSerializer.String)
+            {
+                CreateFile = CreatePolicy.IfNeeded,
+                FileName = Path.Combine(directory, name, "table.data"),
+            };
+            
+            _dataTree = new BPlusTree<Guid, string>(options);
         }
 
         public static Table OpenTable(string tableName, string dbDirectory)
@@ -69,11 +77,8 @@ namespace RaccoonDB.Internal.Storage
             var infoFilePath = Path.Combine(location, "table.info");
             var tableInformation = JsonSerializer.Deserialize<TableInformation>(File.ReadAllText(infoFilePath))
                                 ?? throw new Exception("Deserialization of table information failed.");
-            
-            var dataFilePath = Path.Combine(location, "table.data");
-            var dataStream = File.Open(dataFilePath, FileMode.Open);
 
-            return new Table(tableName, dbDirectory, tableInformation, dataStream);
+            return new Table(tableName, dbDirectory, tableInformation);
         }
 
         public static Table CreateTable(CreateTableModel model, string dbDirectory)
@@ -101,10 +106,7 @@ namespace RaccoonDB.Internal.Storage
                 }).ToList(),
             };
             
-            var dataFilePath = Path.Combine(location, "table.data");
-            var dataStream = File.Create(dataFilePath);
-
-            var table = new Table(model.TableName, dbDirectory, tableInformation, dataStream);
+            var table = new Table(model.TableName, dbDirectory, tableInformation);
 
             table.WriteInfoFile();
 
@@ -173,21 +175,23 @@ namespace RaccoonDB.Internal.Storage
             
         }
         
-        public Task<IEnumerable<ResultRow>> ScanAsync()
+        public Task<IEnumerable<ResultRow>> ScanAsync(Predicate<ResultRow> predicate)
         {
+            
             return Task.FromResult(Enumerable.Empty<ResultRow>());
         }
 
         public void Drop()
         {
-            _dataStream.Close();
+            _dataTree.Dispose();
+            _dataTree = null!;
+            
             Directory.Delete(Path.Combine(_directory, _name), true);
         }
 
         public void Truncate()
         {
-            _dataStream.SetLength(0);
-            _dataStream.Flush();
+            _dataTree.Clear();
         }
 
         public TableInformation Explain() =>
@@ -216,7 +220,7 @@ namespace RaccoonDB.Internal.Storage
 
         public void Dispose()
         {
-            _dataStream.Dispose();
+            _dataTree?.Dispose();
         }
     }
 }

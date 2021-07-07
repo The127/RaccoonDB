@@ -151,16 +151,6 @@ public interface IRaccoonSQLListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitIndex([NotNull] RaccoonSQLParser.IndexContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.indexColumns"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void EnterIndexColumns([NotNull] RaccoonSQLParser.IndexColumnsContext context);
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.indexColumns"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	void ExitIndexColumns([NotNull] RaccoonSQLParser.IndexColumnsContext context);
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.indexColumn"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

@@ -180,18 +180,6 @@ public partial class RaccoonSQLBaseListener : IRaccoonSQLListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIndex([NotNull] RaccoonSQLParser.IndexContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.indexColumns"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void EnterIndexColumns([NotNull] RaccoonSQLParser.IndexColumnsContext context) { }
-	/// <summary>
-	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.indexColumns"/>.
-	/// <para>The default implementation does nothing.</para>
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	public virtual void ExitIndexColumns([NotNull] RaccoonSQLParser.IndexColumnsContext context) { }
-	/// <summary>
 	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.indexColumn"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

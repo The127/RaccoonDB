@@ -104,12 +104,6 @@ public interface IRaccoonSQLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitIndex([NotNull] RaccoonSQLParser.IndexContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="RaccoonSQLParser.indexColumns"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitIndexColumns([NotNull] RaccoonSQLParser.IndexColumnsContext context);
-	/// <summary>
 	/// Visit a parse tree produced by <see cref="RaccoonSQLParser.indexColumn"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

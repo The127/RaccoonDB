@@ -43,15 +43,11 @@ truncateQuery
 
 
 createIndex
-    : uniqueConstraint? index ifNotExists? '(' indexColumns ')'
+    : uniqueConstraint? index ifNotExists? '(' indexColumn ')'
     ;
     
 index
     : 'index' indexIdentifier=Identifier 'on' 'table' tableIdentifier=Identifier
-    ;    
-
-indexColumns
-    : indexColumn (',' indexColumn)*
     ;
     
 indexColumn
