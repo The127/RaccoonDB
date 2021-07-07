@@ -4,6 +4,7 @@ namespace RaccoonDB.Internal.Querying.Compiler
 {
     public class CreateIndexModel
     {
+        public bool IfNotExists { get; set; }
         public bool Unique { get; set; }
         public string IndexName { get; set; } = null!;
         public string TableName { get; set; } = null!;
@@ -32,6 +33,12 @@ namespace RaccoonDB.Internal.Querying.Compiler
         public override CreateIndexModel VisitUniqueConstraint(RaccoonSQLParser.UniqueConstraintContext context)
         {
             _model.Unique = true;
+            return _model;
+        }
+
+        public override CreateIndexModel VisitIfNotExists(RaccoonSQLParser.IfNotExistsContext context)
+        {
+            _model.IfNotExists = true;
             return _model;
         }
     }

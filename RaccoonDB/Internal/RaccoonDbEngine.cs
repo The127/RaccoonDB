@@ -11,13 +11,6 @@ namespace RaccoonDB.Internal
         private SqlQueryCompiler _queryCompiler = new SqlQueryCompiler();
         private SqlQueryCache _queryCache = new SqlQueryCache();
         
-        public RaccoonDbEngine(string connectionString)
-        {
-            if (!File.Exists(connectionString))
-            {
-                using var stream = File.Create(connectionString);
-            }
-        }
 
         public ResultSet ExecuteSql(string sql, object[] @params, IRaccoonDbStorageProvider raccoonDbStorageProvider)
         {

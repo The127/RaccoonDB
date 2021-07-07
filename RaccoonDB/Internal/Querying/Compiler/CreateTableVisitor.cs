@@ -5,6 +5,7 @@ namespace RaccoonDB.Internal.Querying.Compiler
 {
     public class CreateTableModel
     {
+        public bool IfNotExists { get; set; }
         public string TableName { get; set; } = null!;
         public List<TableColumnModel> Columns { get; } = new();
 
@@ -26,6 +27,12 @@ namespace RaccoonDB.Internal.Querying.Compiler
         public override CreateTableModel VisitTableColumn(RaccoonSQLParser.TableColumnContext context)
         {
             _model.Columns.Add(new TableColumnVisitor().Visit(context));
+            return _model;
+        }
+
+        public override CreateTableModel VisitIfNotExists(RaccoonSQLParser.IfNotExistsContext context)
+        {
+            _model.IfNotExists = true;
             return _model;
         }
     }

@@ -2,7 +2,12 @@
 {
     public class ExplainQueryVisitor : RacconDbCustomVisitorBase<CompiledQuery>
     {
-        public override CompiledQuery VisitTable(RaccoonSQLParser.TableContext context)
+        public override CompiledQuery VisitExplainColumnsOnTable(RaccoonSQLParser.ExplainColumnsOnTableContext context)
+        {
+            return new ExplainTableQuery(new ExplainTableVisitor().Visit(context));
+        }
+
+        public override CompiledQuery VisitExplainIndicesOnTable(RaccoonSQLParser.ExplainIndicesOnTableContext context)
         {
             return new ExplainTableQuery(new ExplainTableVisitor().Visit(context));
         }

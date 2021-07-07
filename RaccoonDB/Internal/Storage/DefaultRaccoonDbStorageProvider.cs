@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 using CSharpTest.Net.Collections;
 using CSharpTest.Net.Serialization;
@@ -7,8 +8,17 @@ namespace RaccoonDB.Internal.Storage
 {
     public class DefaultRaccoonDbStorageProvider : IRaccoonDbStorageProvider
     {
-        private ReaderWriterLockSlim _readerWriterLock = new();
-        private RacconDbStorageEngine _storageEngine = new();
+        private readonly ReaderWriterLockSlim _readerWriterLock = new();
+        private readonly RaccoonDbStorageEngine _storageEngine;
+
+        public DefaultRaccoonDbStorageProvider(string dbDirectory)
+        {
+            if (!Directory.Exists(dbDirectory))
+            {
+                Directory.CreateDirectory(dbDirectory);
+            }
+            _storageEngine = new RaccoonDbStorageEngine(dbDirectory);
+        }
 
         public void Read(Action<IRacconDbStorageReader> readAction)
         {

@@ -7,8 +7,8 @@ namespace RaccoonDB.Interface
     public sealed class RaccoonDbDriver
     {
         private readonly RaccoonDbDriverConfiguration _driverConfiguration;
-        private RaccoonDbEngine _engine;
-        private IRaccoonDbStorageProvider _storageProvider = new DefaultRaccoonDbStorageProvider();
+        private readonly RaccoonDbEngine _engine;
+        private readonly IRaccoonDbStorageProvider _storageProvider;
 
         public RaccoonDbDriver(string connectionString)
             : this(connectionString, new RaccoonDbDriverConfiguration())
@@ -18,7 +18,8 @@ namespace RaccoonDB.Interface
         public RaccoonDbDriver(string connectionString, RaccoonDbDriverConfiguration driverConfiguration)
         {
             _driverConfiguration = driverConfiguration;
-            _engine = new RaccoonDbEngine(connectionString);
+            _engine = new RaccoonDbEngine();
+            _storageProvider = new DefaultRaccoonDbStorageProvider(connectionString);
         }
 
         public ResultSet ExecuteSql(string sql, params object[] @params)

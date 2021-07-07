@@ -44,11 +44,23 @@ public interface IRaccoonSQLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCreateQuery([NotNull] RaccoonSQLParser.CreateQueryContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="RaccoonSQLParser.ifNotExists"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIfNotExists([NotNull] RaccoonSQLParser.IfNotExistsContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="RaccoonSQLParser.dropQuery"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitDropQuery([NotNull] RaccoonSQLParser.DropQueryContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RaccoonSQLParser.ifExists"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIfExists([NotNull] RaccoonSQLParser.IfExistsContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="RaccoonSQLParser.alterQuery"/>.
 	/// </summary>
@@ -61,6 +73,18 @@ public interface IRaccoonSQLVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitExplainQuery([NotNull] RaccoonSQLParser.ExplainQueryContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RaccoonSQLParser.explainColumnsOnTable"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitExplainColumnsOnTable([NotNull] RaccoonSQLParser.ExplainColumnsOnTableContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="RaccoonSQLParser.explainIndicesOnTable"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitExplainIndicesOnTable([NotNull] RaccoonSQLParser.ExplainIndicesOnTableContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="RaccoonSQLParser.truncateQuery"/>.
 	/// </summary>

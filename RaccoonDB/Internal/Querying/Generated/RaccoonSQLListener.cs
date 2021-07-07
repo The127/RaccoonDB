@@ -51,6 +51,16 @@ public interface IRaccoonSQLListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitCreateQuery([NotNull] RaccoonSQLParser.CreateQueryContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.ifNotExists"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIfNotExists([NotNull] RaccoonSQLParser.IfNotExistsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.ifNotExists"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIfNotExists([NotNull] RaccoonSQLParser.IfNotExistsContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.dropQuery"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -60,6 +70,16 @@ public interface IRaccoonSQLListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitDropQuery([NotNull] RaccoonSQLParser.DropQueryContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.ifExists"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIfExists([NotNull] RaccoonSQLParser.IfExistsContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.ifExists"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIfExists([NotNull] RaccoonSQLParser.IfExistsContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.alterQuery"/>.
 	/// </summary>
@@ -80,6 +100,26 @@ public interface IRaccoonSQLListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitExplainQuery([NotNull] RaccoonSQLParser.ExplainQueryContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.explainColumnsOnTable"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterExplainColumnsOnTable([NotNull] RaccoonSQLParser.ExplainColumnsOnTableContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.explainColumnsOnTable"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitExplainColumnsOnTable([NotNull] RaccoonSQLParser.ExplainColumnsOnTableContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.explainIndicesOnTable"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterExplainIndicesOnTable([NotNull] RaccoonSQLParser.ExplainIndicesOnTableContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.explainIndicesOnTable"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitExplainIndicesOnTable([NotNull] RaccoonSQLParser.ExplainIndicesOnTableContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.truncateQuery"/>.
 	/// </summary>

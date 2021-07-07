@@ -8,18 +8,34 @@ query
 createQuery
     : 'create' (createIndex | createTable)
     ;
+    
+ifNotExists
+    : 'if' 'not' 'exists'
+    ;    
 
 dropQuery
-    : 'drop' (index | table)
+    : 'drop' (index | table) ifExists?
     ;
+    
+ifExists
+    : 'if' 'exists'
+    ;    
     
 alterQuery
     : 'alter' table (addColumn | dropColumn | alterColumn)
     ;    
     
 explainQuery
-    : 'explain' (index | table)
+    : 'explain' (index | explainColumnsOnTable | explainIndicesOnTable)
     ;    
+    
+explainColumnsOnTable
+    : ('columns' 'on')? table
+    ;
+    
+explainIndicesOnTable
+    : 'indices' 'on' table
+    ;      
     
 truncateQuery
     : 'truncate' table
@@ -27,7 +43,7 @@ truncateQuery
 
 
 createIndex
-    : uniqueConstraint? index '(' indexColumns ')'
+    : uniqueConstraint? index ifNotExists? '(' indexColumns ')'
     ;
     
 index
@@ -44,7 +60,7 @@ indexColumn
 
     
 createTable
-    : table '(' tableColumns ')'
+    : table ifNotExists? '(' tableColumns ')'
     ;    
     
 table

@@ -1,0 +1,35 @@
+﻿{
+    "Name": "tickets",
+    "Columns": [
+        {
+            "Name": "Id",
+            "Type": "uuid",
+            "PrimaryKey": true,
+            "Auto": true
+        },
+        {
+            "Name": "Subject",
+            "Type": "string",
+            "NotNull": true
+        },
+        {
+            "Name": "Description",
+            "Type": "string"
+        }
+    ],
+    "Indexes": [
+        {
+            "Name": "$ix_primary_key",
+            "Unique": true
+            "Columns": [
+                "Id"
+            ]
+        },
+        {
+            "Name": "ix_title",
+            "Columns": [
+                "Title"
+            ]
+        }
+    ]
+}

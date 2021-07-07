@@ -39,18 +39,21 @@ public partial class RaccoonSQLParser : Parser {
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
-		T__24=25, Identifier=26, LINE_COMMENT=27, WS=28;
+		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, Identifier=30, LINE_COMMENT=31, 
+		WS=32;
 	public const int
-		RULE_query = 0, RULE_createQuery = 1, RULE_dropQuery = 2, RULE_alterQuery = 3, 
-		RULE_explainQuery = 4, RULE_truncateQuery = 5, RULE_createIndex = 6, RULE_index = 7, 
-		RULE_indexColumns = 8, RULE_indexColumn = 9, RULE_createTable = 10, RULE_table = 11, 
-		RULE_tableColumns = 12, RULE_tableColumn = 13, RULE_columnConstraint = 14, 
-		RULE_autoValue = 15, RULE_notNullConstraint = 16, RULE_uniqueConstraint = 17, 
-		RULE_primaryKeyConstraint = 18, RULE_foreignKeyConstraint = 19, RULE_addColumn = 20, 
-		RULE_dropColumn = 21, RULE_alterColumn = 22, RULE_selectQuery = 23, RULE_updateQuery = 24, 
-		RULE_deleteQuery = 25, RULE_insertQuery = 26;
+		RULE_query = 0, RULE_createQuery = 1, RULE_ifNotExists = 2, RULE_dropQuery = 3, 
+		RULE_ifExists = 4, RULE_alterQuery = 5, RULE_explainQuery = 6, RULE_explainColumnsOnTable = 7, 
+		RULE_explainIndicesOnTable = 8, RULE_truncateQuery = 9, RULE_createIndex = 10, 
+		RULE_index = 11, RULE_indexColumns = 12, RULE_indexColumn = 13, RULE_createTable = 14, 
+		RULE_table = 15, RULE_tableColumns = 16, RULE_tableColumn = 17, RULE_columnConstraint = 18, 
+		RULE_autoValue = 19, RULE_notNullConstraint = 20, RULE_uniqueConstraint = 21, 
+		RULE_primaryKeyConstraint = 22, RULE_foreignKeyConstraint = 23, RULE_addColumn = 24, 
+		RULE_dropColumn = 25, RULE_alterColumn = 26, RULE_selectQuery = 27, RULE_updateQuery = 28, 
+		RULE_deleteQuery = 29, RULE_insertQuery = 30;
 	public static readonly string[] ruleNames = {
-		"query", "createQuery", "dropQuery", "alterQuery", "explainQuery", "truncateQuery", 
+		"query", "createQuery", "ifNotExists", "dropQuery", "ifExists", "alterQuery", 
+		"explainQuery", "explainColumnsOnTable", "explainIndicesOnTable", "truncateQuery", 
 		"createIndex", "index", "indexColumns", "indexColumn", "createTable", 
 		"table", "tableColumns", "tableColumn", "columnConstraint", "autoValue", 
 		"notNullConstraint", "uniqueConstraint", "primaryKeyConstraint", "foreignKeyConstraint", 
@@ -59,15 +62,16 @@ public partial class RaccoonSQLParser : Parser {
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'create'", "'drop'", "'alter'", "'explain'", "'truncate'", "'('", 
-		"')'", "'index'", "'on'", "'table'", "','", "'auto'", "'not'", "'null'", 
-		"'unique'", "'primary'", "'key'", "'foreign'", "'references'", "'add'", 
-		"'select'", "'update'", "'delete'", "'insert'", "'into'"
+		null, "'create'", "'if'", "'not'", "'exists'", "'drop'", "'alter'", "'explain'", 
+		"'columns'", "'on'", "'indices'", "'truncate'", "'('", "')'", "'index'", 
+		"'table'", "','", "'auto'", "'null'", "'unique'", "'primary'", "'key'", 
+		"'foreign'", "'references'", "'add'", "'select'", "'update'", "'delete'", 
+		"'insert'", "'into'"
 	};
 	private static readonly string[] _SymbolicNames = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, "Identifier", "LINE_COMMENT", "WS"
+		null, null, null, null, null, null, "Identifier", "LINE_COMMENT", "WS"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -159,60 +163,60 @@ public partial class RaccoonSQLParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 63;
+			State = 71;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
 			case T__0:
 				{
-				State = 54;
+				State = 62;
 				createQuery();
-				}
-				break;
-			case T__1:
-				{
-				State = 55;
-				dropQuery();
-				}
-				break;
-			case T__2:
-				{
-				State = 56;
-				alterQuery();
-				}
-				break;
-			case T__3:
-				{
-				State = 57;
-				explainQuery();
 				}
 				break;
 			case T__4:
 				{
-				State = 58;
+				State = 63;
+				dropQuery();
+				}
+				break;
+			case T__5:
+				{
+				State = 64;
+				alterQuery();
+				}
+				break;
+			case T__6:
+				{
+				State = 65;
+				explainQuery();
+				}
+				break;
+			case T__10:
+				{
+				State = 66;
 				truncateQuery();
 				}
 				break;
-			case T__20:
+			case T__24:
 				{
-				State = 59;
+				State = 67;
 				selectQuery();
 				}
 				break;
-			case T__21:
+			case T__25:
 				{
-				State = 60;
+				State = 68;
 				updateQuery();
 				}
 				break;
-			case T__22:
+			case T__26:
 				{
-				State = 61;
+				State = 69;
 				deleteQuery();
 				}
 				break;
-			case T__23:
+			case T__27:
 				{
-				State = 62;
+				State = 70;
 				insertQuery();
 				}
 				break;
@@ -269,21 +273,21 @@ public partial class RaccoonSQLParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 65;
+			State = 73;
 			Match(T__0);
-			State = 68;
+			State = 76;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case T__7:
-			case T__14:
+			case T__13:
+			case T__18:
 				{
-				State = 66;
+				State = 74;
 				createIndex();
 				}
 				break;
-			case T__9:
+			case T__14:
 				{
-				State = 67;
+				State = 75;
 				createTable();
 				}
 				break;
@@ -303,12 +307,65 @@ public partial class RaccoonSQLParser : Parser {
 		return _localctx;
 	}
 
+	public partial class IfNotExistsContext : ParserRuleContext {
+		public IfNotExistsContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_ifNotExists; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRaccoonSQLListener typedListener = listener as IRaccoonSQLListener;
+			if (typedListener != null) typedListener.EnterIfNotExists(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRaccoonSQLListener typedListener = listener as IRaccoonSQLListener;
+			if (typedListener != null) typedListener.ExitIfNotExists(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRaccoonSQLVisitor<TResult> typedVisitor = visitor as IRaccoonSQLVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitIfNotExists(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public IfNotExistsContext ifNotExists() {
+		IfNotExistsContext _localctx = new IfNotExistsContext(Context, State);
+		EnterRule(_localctx, 4, RULE_ifNotExists);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 78;
+			Match(T__1);
+			State = 79;
+			Match(T__2);
+			State = 80;
+			Match(T__3);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
 	public partial class DropQueryContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public IndexContext index() {
 			return GetRuleContext<IndexContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public TableContext table() {
 			return GetRuleContext<TableContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IfExistsContext ifExists() {
+			return GetRuleContext<IfExistsContext>(0);
 		}
 		public DropQueryContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -336,30 +393,89 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public DropQueryContext dropQuery() {
 		DropQueryContext _localctx = new DropQueryContext(Context, State);
-		EnterRule(_localctx, 4, RULE_dropQuery);
+		EnterRule(_localctx, 6, RULE_dropQuery);
+		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 70;
-			Match(T__1);
-			State = 73;
+			State = 82;
+			Match(T__4);
+			State = 85;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case T__7:
+			case T__13:
 				{
-				State = 71;
+				State = 83;
 				index();
 				}
 				break;
-			case T__9:
+			case T__14:
 				{
-				State = 72;
+				State = 84;
 				table();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
+			State = 88;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==T__1) {
+				{
+				State = 87;
+				ifExists();
+				}
+			}
+
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class IfExistsContext : ParserRuleContext {
+		public IfExistsContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_ifExists; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRaccoonSQLListener typedListener = listener as IRaccoonSQLListener;
+			if (typedListener != null) typedListener.EnterIfExists(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRaccoonSQLListener typedListener = listener as IRaccoonSQLListener;
+			if (typedListener != null) typedListener.ExitIfExists(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRaccoonSQLVisitor<TResult> typedVisitor = visitor as IRaccoonSQLVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitIfExists(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public IfExistsContext ifExists() {
+		IfExistsContext _localctx = new IfExistsContext(Context, State);
+		EnterRule(_localctx, 8, RULE_ifExists);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 90;
+			Match(T__1);
+			State = 91;
+			Match(T__3);
 			}
 		}
 		catch (RecognitionException re) {
@@ -412,32 +528,32 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public AlterQueryContext alterQuery() {
 		AlterQueryContext _localctx = new AlterQueryContext(Context, State);
-		EnterRule(_localctx, 6, RULE_alterQuery);
+		EnterRule(_localctx, 10, RULE_alterQuery);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 75;
-			Match(T__2);
-			State = 76;
+			State = 93;
+			Match(T__5);
+			State = 94;
 			table();
-			State = 80;
+			State = 98;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case T__19:
+			case T__23:
 				{
-				State = 77;
+				State = 95;
 				addColumn();
 				}
 				break;
-			case T__1:
+			case T__4:
 				{
-				State = 78;
+				State = 96;
 				dropColumn();
 				}
 				break;
-			case T__2:
+			case T__5:
 				{
-				State = 79;
+				State = 97;
 				alterColumn();
 				}
 				break;
@@ -461,8 +577,11 @@ public partial class RaccoonSQLParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public IndexContext index() {
 			return GetRuleContext<IndexContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public TableContext table() {
-			return GetRuleContext<TableContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ExplainColumnsOnTableContext explainColumnsOnTable() {
+			return GetRuleContext<ExplainColumnsOnTableContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ExplainIndicesOnTableContext explainIndicesOnTable() {
+			return GetRuleContext<ExplainIndicesOnTableContext>(0);
 		}
 		public ExplainQueryContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -490,30 +609,152 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public ExplainQueryContext explainQuery() {
 		ExplainQueryContext _localctx = new ExplainQueryContext(Context, State);
-		EnterRule(_localctx, 8, RULE_explainQuery);
+		EnterRule(_localctx, 12, RULE_explainQuery);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 82;
-			Match(T__3);
-			State = 85;
+			State = 100;
+			Match(T__6);
+			State = 104;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case T__7:
+			case T__13:
 				{
-				State = 83;
+				State = 101;
 				index();
+				}
+				break;
+			case T__7:
+			case T__14:
+				{
+				State = 102;
+				explainColumnsOnTable();
 				}
 				break;
 			case T__9:
 				{
-				State = 84;
-				table();
+				State = 103;
+				explainIndicesOnTable();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class ExplainColumnsOnTableContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public TableContext table() {
+			return GetRuleContext<TableContext>(0);
+		}
+		public ExplainColumnsOnTableContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_explainColumnsOnTable; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRaccoonSQLListener typedListener = listener as IRaccoonSQLListener;
+			if (typedListener != null) typedListener.EnterExplainColumnsOnTable(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRaccoonSQLListener typedListener = listener as IRaccoonSQLListener;
+			if (typedListener != null) typedListener.ExitExplainColumnsOnTable(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRaccoonSQLVisitor<TResult> typedVisitor = visitor as IRaccoonSQLVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExplainColumnsOnTable(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ExplainColumnsOnTableContext explainColumnsOnTable() {
+		ExplainColumnsOnTableContext _localctx = new ExplainColumnsOnTableContext(Context, State);
+		EnterRule(_localctx, 14, RULE_explainColumnsOnTable);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 108;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==T__7) {
+				{
+				State = 106;
+				Match(T__7);
+				State = 107;
+				Match(T__8);
+				}
+			}
+
+			State = 110;
+			table();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class ExplainIndicesOnTableContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public TableContext table() {
+			return GetRuleContext<TableContext>(0);
+		}
+		public ExplainIndicesOnTableContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_explainIndicesOnTable; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRaccoonSQLListener typedListener = listener as IRaccoonSQLListener;
+			if (typedListener != null) typedListener.EnterExplainIndicesOnTable(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRaccoonSQLListener typedListener = listener as IRaccoonSQLListener;
+			if (typedListener != null) typedListener.ExitExplainIndicesOnTable(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRaccoonSQLVisitor<TResult> typedVisitor = visitor as IRaccoonSQLVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitExplainIndicesOnTable(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ExplainIndicesOnTableContext explainIndicesOnTable() {
+		ExplainIndicesOnTableContext _localctx = new ExplainIndicesOnTableContext(Context, State);
+		EnterRule(_localctx, 16, RULE_explainIndicesOnTable);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 112;
+			Match(T__9);
+			State = 113;
+			Match(T__8);
+			State = 114;
+			table();
 			}
 		}
 		catch (RecognitionException re) {
@@ -557,13 +798,13 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public TruncateQueryContext truncateQuery() {
 		TruncateQueryContext _localctx = new TruncateQueryContext(Context, State);
-		EnterRule(_localctx, 10, RULE_truncateQuery);
+		EnterRule(_localctx, 18, RULE_truncateQuery);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 87;
-			Match(T__4);
-			State = 88;
+			State = 116;
+			Match(T__10);
+			State = 117;
 			table();
 			}
 		}
@@ -587,6 +828,9 @@ public partial class RaccoonSQLParser : Parser {
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public UniqueConstraintContext uniqueConstraint() {
 			return GetRuleContext<UniqueConstraintContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IfNotExistsContext ifNotExists() {
+			return GetRuleContext<IfNotExistsContext>(0);
 		}
 		public CreateIndexContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -614,29 +858,39 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public CreateIndexContext createIndex() {
 		CreateIndexContext _localctx = new CreateIndexContext(Context, State);
-		EnterRule(_localctx, 12, RULE_createIndex);
+		EnterRule(_localctx, 20, RULE_createIndex);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 91;
+			State = 120;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			if (_la==T__14) {
+			if (_la==T__18) {
 				{
-				State = 90;
+				State = 119;
 				uniqueConstraint();
 				}
 			}
 
-			State = 93;
+			State = 122;
 			index();
-			State = 94;
-			Match(T__5);
-			State = 95;
+			State = 124;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==T__1) {
+				{
+				State = 123;
+				ifNotExists();
+				}
+			}
+
+			State = 126;
+			Match(T__11);
+			State = 127;
 			indexColumns();
-			State = 96;
-			Match(T__6);
+			State = 128;
+			Match(T__12);
 			}
 		}
 		catch (RecognitionException re) {
@@ -683,19 +937,19 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public IndexContext index() {
 		IndexContext _localctx = new IndexContext(Context, State);
-		EnterRule(_localctx, 14, RULE_index);
+		EnterRule(_localctx, 22, RULE_index);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 98;
-			Match(T__7);
-			State = 99;
+			State = 130;
+			Match(T__13);
+			State = 131;
 			_localctx.indexIdentifier = Match(Identifier);
-			State = 100;
+			State = 132;
 			Match(T__8);
-			State = 101;
-			Match(T__9);
-			State = 102;
+			State = 133;
+			Match(T__14);
+			State = 134;
 			_localctx.tableIdentifier = Match(Identifier);
 			}
 		}
@@ -743,26 +997,26 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public IndexColumnsContext indexColumns() {
 		IndexColumnsContext _localctx = new IndexColumnsContext(Context, State);
-		EnterRule(_localctx, 16, RULE_indexColumns);
+		EnterRule(_localctx, 24, RULE_indexColumns);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 104;
+			State = 136;
 			indexColumn();
-			State = 109;
+			State = 141;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while (_la==T__10) {
+			while (_la==T__15) {
 				{
 				{
-				State = 105;
-				Match(T__10);
-				State = 106;
+				State = 137;
+				Match(T__15);
+				State = 138;
 				indexColumn();
 				}
 				}
-				State = 111;
+				State = 143;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -808,11 +1062,11 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public IndexColumnContext indexColumn() {
 		IndexColumnContext _localctx = new IndexColumnContext(Context, State);
-		EnterRule(_localctx, 18, RULE_indexColumn);
+		EnterRule(_localctx, 26, RULE_indexColumn);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 112;
+			State = 144;
 			_localctx.columnName = Match(Identifier);
 			}
 		}
@@ -833,6 +1087,9 @@ public partial class RaccoonSQLParser : Parser {
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public TableColumnsContext tableColumns() {
 			return GetRuleContext<TableColumnsContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public IfNotExistsContext ifNotExists() {
+			return GetRuleContext<IfNotExistsContext>(0);
 		}
 		public CreateTableContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -860,18 +1117,29 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public CreateTableContext createTable() {
 		CreateTableContext _localctx = new CreateTableContext(Context, State);
-		EnterRule(_localctx, 20, RULE_createTable);
+		EnterRule(_localctx, 28, RULE_createTable);
+		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 114;
+			State = 146;
 			table();
-			State = 115;
-			Match(T__5);
-			State = 116;
+			State = 148;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if (_la==T__1) {
+				{
+				State = 147;
+				ifNotExists();
+				}
+			}
+
+			State = 150;
+			Match(T__11);
+			State = 151;
 			tableColumns();
-			State = 117;
-			Match(T__6);
+			State = 152;
+			Match(T__12);
 			}
 		}
 		catch (RecognitionException re) {
@@ -914,13 +1182,13 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public TableContext table() {
 		TableContext _localctx = new TableContext(Context, State);
-		EnterRule(_localctx, 22, RULE_table);
+		EnterRule(_localctx, 30, RULE_table);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 119;
-			Match(T__9);
-			State = 120;
+			State = 154;
+			Match(T__14);
+			State = 155;
 			_localctx.tableName = Match(Identifier);
 			}
 		}
@@ -968,26 +1236,26 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public TableColumnsContext tableColumns() {
 		TableColumnsContext _localctx = new TableColumnsContext(Context, State);
-		EnterRule(_localctx, 24, RULE_tableColumns);
+		EnterRule(_localctx, 32, RULE_tableColumns);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 122;
+			State = 157;
 			tableColumn();
-			State = 127;
+			State = 162;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while (_la==T__10) {
+			while (_la==T__15) {
 				{
 				{
-				State = 123;
-				Match(T__10);
-				State = 124;
+				State = 158;
+				Match(T__15);
+				State = 159;
 				tableColumn();
 				}
 				}
-				State = 129;
+				State = 164;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -1043,26 +1311,26 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public TableColumnContext tableColumn() {
 		TableColumnContext _localctx = new TableColumnContext(Context, State);
-		EnterRule(_localctx, 26, RULE_tableColumn);
+		EnterRule(_localctx, 34, RULE_tableColumn);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 130;
+			State = 165;
 			_localctx.name = Match(Identifier);
-			State = 131;
+			State = 166;
 			_localctx.type = Match(Identifier);
-			State = 135;
+			State = 170;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__11) | (1L << T__12) | (1L << T__14) | (1L << T__15) | (1L << T__17))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__16) | (1L << T__18) | (1L << T__19) | (1L << T__21))) != 0)) {
 				{
 				{
-				State = 132;
+				State = 167;
 				columnConstraint();
 				}
 				}
-				State = 137;
+				State = 172;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -1121,43 +1389,43 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public ColumnConstraintContext columnConstraint() {
 		ColumnConstraintContext _localctx = new ColumnConstraintContext(Context, State);
-		EnterRule(_localctx, 28, RULE_columnConstraint);
+		EnterRule(_localctx, 36, RULE_columnConstraint);
 		try {
-			State = 143;
+			State = 178;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case T__12:
+			case T__2:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 138;
+				State = 173;
 				notNullConstraint();
 				}
 				break;
-			case T__14:
+			case T__18:
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 139;
+				State = 174;
 				uniqueConstraint();
 				}
 				break;
-			case T__15:
+			case T__19:
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 140;
+				State = 175;
 				primaryKeyConstraint();
 				}
 				break;
-			case T__17:
+			case T__21:
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 141;
+				State = 176;
 				foreignKeyConstraint();
 				}
 				break;
-			case T__11:
+			case T__16:
 				EnterOuterAlt(_localctx, 5);
 				{
-				State = 142;
+				State = 177;
 				autoValue();
 				}
 				break;
@@ -1203,12 +1471,12 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public AutoValueContext autoValue() {
 		AutoValueContext _localctx = new AutoValueContext(Context, State);
-		EnterRule(_localctx, 30, RULE_autoValue);
+		EnterRule(_localctx, 38, RULE_autoValue);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 145;
-			Match(T__11);
+			State = 180;
+			Match(T__16);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1249,14 +1517,14 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public NotNullConstraintContext notNullConstraint() {
 		NotNullConstraintContext _localctx = new NotNullConstraintContext(Context, State);
-		EnterRule(_localctx, 32, RULE_notNullConstraint);
+		EnterRule(_localctx, 40, RULE_notNullConstraint);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 147;
-			Match(T__12);
-			State = 148;
-			Match(T__13);
+			State = 182;
+			Match(T__2);
+			State = 183;
+			Match(T__17);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1297,12 +1565,12 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public UniqueConstraintContext uniqueConstraint() {
 		UniqueConstraintContext _localctx = new UniqueConstraintContext(Context, State);
-		EnterRule(_localctx, 34, RULE_uniqueConstraint);
+		EnterRule(_localctx, 42, RULE_uniqueConstraint);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 150;
-			Match(T__14);
+			State = 185;
+			Match(T__18);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1343,14 +1611,14 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public PrimaryKeyConstraintContext primaryKeyConstraint() {
 		PrimaryKeyConstraintContext _localctx = new PrimaryKeyConstraintContext(Context, State);
-		EnterRule(_localctx, 36, RULE_primaryKeyConstraint);
+		EnterRule(_localctx, 44, RULE_primaryKeyConstraint);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 152;
-			Match(T__15);
-			State = 153;
-			Match(T__16);
+			State = 187;
+			Match(T__19);
+			State = 188;
+			Match(T__20);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1397,24 +1665,24 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public ForeignKeyConstraintContext foreignKeyConstraint() {
 		ForeignKeyConstraintContext _localctx = new ForeignKeyConstraintContext(Context, State);
-		EnterRule(_localctx, 38, RULE_foreignKeyConstraint);
+		EnterRule(_localctx, 46, RULE_foreignKeyConstraint);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 155;
-			Match(T__17);
-			State = 156;
-			Match(T__16);
-			State = 157;
-			Match(T__18);
-			State = 158;
+			State = 190;
+			Match(T__21);
+			State = 191;
+			Match(T__20);
+			State = 192;
+			Match(T__22);
+			State = 193;
 			_localctx.tableName = Match(Identifier);
-			State = 159;
-			Match(T__5);
-			State = 160;
+			State = 194;
+			Match(T__11);
+			State = 195;
 			_localctx.columnName = Match(Identifier);
-			State = 161;
-			Match(T__6);
+			State = 196;
+			Match(T__12);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1458,13 +1726,13 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public AddColumnContext addColumn() {
 		AddColumnContext _localctx = new AddColumnContext(Context, State);
-		EnterRule(_localctx, 40, RULE_addColumn);
+		EnterRule(_localctx, 48, RULE_addColumn);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 163;
-			Match(T__19);
-			State = 164;
+			State = 198;
+			Match(T__23);
+			State = 199;
 			tableColumn();
 			}
 		}
@@ -1508,13 +1776,13 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public DropColumnContext dropColumn() {
 		DropColumnContext _localctx = new DropColumnContext(Context, State);
-		EnterRule(_localctx, 42, RULE_dropColumn);
+		EnterRule(_localctx, 50, RULE_dropColumn);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 166;
-			Match(T__1);
-			State = 167;
+			State = 201;
+			Match(T__4);
+			State = 202;
 			_localctx.columnName = Match(Identifier);
 			}
 		}
@@ -1559,13 +1827,13 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public AlterColumnContext alterColumn() {
 		AlterColumnContext _localctx = new AlterColumnContext(Context, State);
-		EnterRule(_localctx, 44, RULE_alterColumn);
+		EnterRule(_localctx, 52, RULE_alterColumn);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 169;
-			Match(T__2);
-			State = 170;
+			State = 204;
+			Match(T__5);
+			State = 205;
 			tableColumn();
 			}
 		}
@@ -1607,12 +1875,12 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public SelectQueryContext selectQuery() {
 		SelectQueryContext _localctx = new SelectQueryContext(Context, State);
-		EnterRule(_localctx, 46, RULE_selectQuery);
+		EnterRule(_localctx, 54, RULE_selectQuery);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 172;
-			Match(T__20);
+			State = 207;
+			Match(T__24);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1653,12 +1921,12 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public UpdateQueryContext updateQuery() {
 		UpdateQueryContext _localctx = new UpdateQueryContext(Context, State);
-		EnterRule(_localctx, 48, RULE_updateQuery);
+		EnterRule(_localctx, 56, RULE_updateQuery);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 174;
-			Match(T__21);
+			State = 209;
+			Match(T__25);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1699,12 +1967,12 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public DeleteQueryContext deleteQuery() {
 		DeleteQueryContext _localctx = new DeleteQueryContext(Context, State);
-		EnterRule(_localctx, 50, RULE_deleteQuery);
+		EnterRule(_localctx, 58, RULE_deleteQuery);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 176;
-			Match(T__22);
+			State = 211;
+			Match(T__26);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1745,14 +2013,14 @@ public partial class RaccoonSQLParser : Parser {
 	[RuleVersion(0)]
 	public InsertQueryContext insertQuery() {
 		InsertQueryContext _localctx = new InsertQueryContext(Context, State);
-		EnterRule(_localctx, 52, RULE_insertQuery);
+		EnterRule(_localctx, 60, RULE_insertQuery);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 178;
-			Match(T__23);
-			State = 179;
-			Match(T__24);
+			State = 213;
+			Match(T__27);
+			State = 214;
+			Match(T__28);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1768,7 +2036,7 @@ public partial class RaccoonSQLParser : Parser {
 
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '\x1E', '\xB8', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\x5964', '\x3', '\"', '\xDB', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
 		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
 		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
 		'\x4', '\t', '\t', '\t', '\x4', '\n', '\t', '\n', '\x4', '\v', '\t', '\v', 
@@ -1778,136 +2046,164 @@ public partial class RaccoonSQLParser : Parser {
 		'\x13', '\x4', '\x14', '\t', '\x14', '\x4', '\x15', '\t', '\x15', '\x4', 
 		'\x16', '\t', '\x16', '\x4', '\x17', '\t', '\x17', '\x4', '\x18', '\t', 
 		'\x18', '\x4', '\x19', '\t', '\x19', '\x4', '\x1A', '\t', '\x1A', '\x4', 
-		'\x1B', '\t', '\x1B', '\x4', '\x1C', '\t', '\x1C', '\x3', '\x2', '\x3', 
-		'\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', 
-		'\x2', '\x3', '\x2', '\x3', '\x2', '\x5', '\x2', '\x42', '\n', '\x2', 
-		'\x3', '\x3', '\x3', '\x3', '\x3', '\x3', '\x5', '\x3', 'G', '\n', '\x3', 
-		'\x3', '\x4', '\x3', '\x4', '\x3', '\x4', '\x5', '\x4', 'L', '\n', '\x4', 
-		'\x3', '\x5', '\x3', '\x5', '\x3', '\x5', '\x3', '\x5', '\x3', '\x5', 
-		'\x5', '\x5', 'S', '\n', '\x5', '\x3', '\x6', '\x3', '\x6', '\x3', '\x6', 
-		'\x5', '\x6', 'X', '\n', '\x6', '\x3', '\a', '\x3', '\a', '\x3', '\a', 
-		'\x3', '\b', '\x5', '\b', '^', '\n', '\b', '\x3', '\b', '\x3', '\b', '\x3', 
-		'\b', '\x3', '\b', '\x3', '\b', '\x3', '\t', '\x3', '\t', '\x3', '\t', 
-		'\x3', '\t', '\x3', '\t', '\x3', '\t', '\x3', '\n', '\x3', '\n', '\x3', 
-		'\n', '\a', '\n', 'n', '\n', '\n', '\f', '\n', '\xE', '\n', 'q', '\v', 
-		'\n', '\x3', '\v', '\x3', '\v', '\x3', '\f', '\x3', '\f', '\x3', '\f', 
+		'\x1B', '\t', '\x1B', '\x4', '\x1C', '\t', '\x1C', '\x4', '\x1D', '\t', 
+		'\x1D', '\x4', '\x1E', '\t', '\x1E', '\x4', '\x1F', '\t', '\x1F', '\x4', 
+		' ', '\t', ' ', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', 
+		'\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', '\x3', '\x2', 
+		'\x5', '\x2', 'J', '\n', '\x2', '\x3', '\x3', '\x3', '\x3', '\x3', '\x3', 
+		'\x5', '\x3', 'O', '\n', '\x3', '\x3', '\x4', '\x3', '\x4', '\x3', '\x4', 
+		'\x3', '\x4', '\x3', '\x5', '\x3', '\x5', '\x3', '\x5', '\x5', '\x5', 
+		'X', '\n', '\x5', '\x3', '\x5', '\x5', '\x5', '[', '\n', '\x5', '\x3', 
+		'\x6', '\x3', '\x6', '\x3', '\x6', '\x3', '\a', '\x3', '\a', '\x3', '\a', 
+		'\x3', '\a', '\x3', '\a', '\x5', '\a', '\x65', '\n', '\a', '\x3', '\b', 
+		'\x3', '\b', '\x3', '\b', '\x3', '\b', '\x5', '\b', 'k', '\n', '\b', '\x3', 
+		'\t', '\x3', '\t', '\x5', '\t', 'o', '\n', '\t', '\x3', '\t', '\x3', '\t', 
+		'\x3', '\n', '\x3', '\n', '\x3', '\n', '\x3', '\n', '\x3', '\v', '\x3', 
+		'\v', '\x3', '\v', '\x3', '\f', '\x5', '\f', '{', '\n', '\f', '\x3', '\f', 
+		'\x3', '\f', '\x5', '\f', '\x7F', '\n', '\f', '\x3', '\f', '\x3', '\f', 
 		'\x3', '\f', '\x3', '\f', '\x3', '\r', '\x3', '\r', '\x3', '\r', '\x3', 
-		'\xE', '\x3', '\xE', '\x3', '\xE', '\a', '\xE', '\x80', '\n', '\xE', '\f', 
-		'\xE', '\xE', '\xE', '\x83', '\v', '\xE', '\x3', '\xF', '\x3', '\xF', 
-		'\x3', '\xF', '\a', '\xF', '\x88', '\n', '\xF', '\f', '\xF', '\xE', '\xF', 
-		'\x8B', '\v', '\xF', '\x3', '\x10', '\x3', '\x10', '\x3', '\x10', '\x3', 
-		'\x10', '\x3', '\x10', '\x5', '\x10', '\x92', '\n', '\x10', '\x3', '\x11', 
-		'\x3', '\x11', '\x3', '\x12', '\x3', '\x12', '\x3', '\x12', '\x3', '\x13', 
-		'\x3', '\x13', '\x3', '\x14', '\x3', '\x14', '\x3', '\x14', '\x3', '\x15', 
-		'\x3', '\x15', '\x3', '\x15', '\x3', '\x15', '\x3', '\x15', '\x3', '\x15', 
-		'\x3', '\x15', '\x3', '\x15', '\x3', '\x16', '\x3', '\x16', '\x3', '\x16', 
-		'\x3', '\x17', '\x3', '\x17', '\x3', '\x17', '\x3', '\x18', '\x3', '\x18', 
-		'\x3', '\x18', '\x3', '\x19', '\x3', '\x19', '\x3', '\x1A', '\x3', '\x1A', 
-		'\x3', '\x1B', '\x3', '\x1B', '\x3', '\x1C', '\x3', '\x1C', '\x3', '\x1C', 
-		'\x3', '\x1C', '\x2', '\x2', '\x1D', '\x2', '\x4', '\x6', '\b', '\n', 
-		'\f', '\xE', '\x10', '\x12', '\x14', '\x16', '\x18', '\x1A', '\x1C', '\x1E', 
+		'\r', '\x3', '\r', '\x3', '\r', '\x3', '\xE', '\x3', '\xE', '\x3', '\xE', 
+		'\a', '\xE', '\x8E', '\n', '\xE', '\f', '\xE', '\xE', '\xE', '\x91', '\v', 
+		'\xE', '\x3', '\xF', '\x3', '\xF', '\x3', '\x10', '\x3', '\x10', '\x5', 
+		'\x10', '\x97', '\n', '\x10', '\x3', '\x10', '\x3', '\x10', '\x3', '\x10', 
+		'\x3', '\x10', '\x3', '\x11', '\x3', '\x11', '\x3', '\x11', '\x3', '\x12', 
+		'\x3', '\x12', '\x3', '\x12', '\a', '\x12', '\xA3', '\n', '\x12', '\f', 
+		'\x12', '\xE', '\x12', '\xA6', '\v', '\x12', '\x3', '\x13', '\x3', '\x13', 
+		'\x3', '\x13', '\a', '\x13', '\xAB', '\n', '\x13', '\f', '\x13', '\xE', 
+		'\x13', '\xAE', '\v', '\x13', '\x3', '\x14', '\x3', '\x14', '\x3', '\x14', 
+		'\x3', '\x14', '\x3', '\x14', '\x5', '\x14', '\xB5', '\n', '\x14', '\x3', 
+		'\x15', '\x3', '\x15', '\x3', '\x16', '\x3', '\x16', '\x3', '\x16', '\x3', 
+		'\x17', '\x3', '\x17', '\x3', '\x18', '\x3', '\x18', '\x3', '\x18', '\x3', 
+		'\x19', '\x3', '\x19', '\x3', '\x19', '\x3', '\x19', '\x3', '\x19', '\x3', 
+		'\x19', '\x3', '\x19', '\x3', '\x19', '\x3', '\x1A', '\x3', '\x1A', '\x3', 
+		'\x1A', '\x3', '\x1B', '\x3', '\x1B', '\x3', '\x1B', '\x3', '\x1C', '\x3', 
+		'\x1C', '\x3', '\x1C', '\x3', '\x1D', '\x3', '\x1D', '\x3', '\x1E', '\x3', 
+		'\x1E', '\x3', '\x1F', '\x3', '\x1F', '\x3', ' ', '\x3', ' ', '\x3', ' ', 
+		'\x3', ' ', '\x2', '\x2', '!', '\x2', '\x4', '\x6', '\b', '\n', '\f', 
+		'\xE', '\x10', '\x12', '\x14', '\x16', '\x18', '\x1A', '\x1C', '\x1E', 
 		' ', '\"', '$', '&', '(', '*', ',', '.', '\x30', '\x32', '\x34', '\x36', 
-		'\x2', '\x2', '\x2', '\xB1', '\x2', '\x41', '\x3', '\x2', '\x2', '\x2', 
-		'\x4', '\x43', '\x3', '\x2', '\x2', '\x2', '\x6', 'H', '\x3', '\x2', '\x2', 
-		'\x2', '\b', 'M', '\x3', '\x2', '\x2', '\x2', '\n', 'T', '\x3', '\x2', 
-		'\x2', '\x2', '\f', 'Y', '\x3', '\x2', '\x2', '\x2', '\xE', ']', '\x3', 
-		'\x2', '\x2', '\x2', '\x10', '\x64', '\x3', '\x2', '\x2', '\x2', '\x12', 
-		'j', '\x3', '\x2', '\x2', '\x2', '\x14', 'r', '\x3', '\x2', '\x2', '\x2', 
-		'\x16', 't', '\x3', '\x2', '\x2', '\x2', '\x18', 'y', '\x3', '\x2', '\x2', 
-		'\x2', '\x1A', '|', '\x3', '\x2', '\x2', '\x2', '\x1C', '\x84', '\x3', 
-		'\x2', '\x2', '\x2', '\x1E', '\x91', '\x3', '\x2', '\x2', '\x2', ' ', 
-		'\x93', '\x3', '\x2', '\x2', '\x2', '\"', '\x95', '\x3', '\x2', '\x2', 
-		'\x2', '$', '\x98', '\x3', '\x2', '\x2', '\x2', '&', '\x9A', '\x3', '\x2', 
-		'\x2', '\x2', '(', '\x9D', '\x3', '\x2', '\x2', '\x2', '*', '\xA5', '\x3', 
-		'\x2', '\x2', '\x2', ',', '\xA8', '\x3', '\x2', '\x2', '\x2', '.', '\xAB', 
-		'\x3', '\x2', '\x2', '\x2', '\x30', '\xAE', '\x3', '\x2', '\x2', '\x2', 
-		'\x32', '\xB0', '\x3', '\x2', '\x2', '\x2', '\x34', '\xB2', '\x3', '\x2', 
-		'\x2', '\x2', '\x36', '\xB4', '\x3', '\x2', '\x2', '\x2', '\x38', '\x42', 
-		'\x5', '\x4', '\x3', '\x2', '\x39', '\x42', '\x5', '\x6', '\x4', '\x2', 
-		':', '\x42', '\x5', '\b', '\x5', '\x2', ';', '\x42', '\x5', '\n', '\x6', 
-		'\x2', '<', '\x42', '\x5', '\f', '\a', '\x2', '=', '\x42', '\x5', '\x30', 
-		'\x19', '\x2', '>', '\x42', '\x5', '\x32', '\x1A', '\x2', '?', '\x42', 
-		'\x5', '\x34', '\x1B', '\x2', '@', '\x42', '\x5', '\x36', '\x1C', '\x2', 
-		'\x41', '\x38', '\x3', '\x2', '\x2', '\x2', '\x41', '\x39', '\x3', '\x2', 
-		'\x2', '\x2', '\x41', ':', '\x3', '\x2', '\x2', '\x2', '\x41', ';', '\x3', 
-		'\x2', '\x2', '\x2', '\x41', '<', '\x3', '\x2', '\x2', '\x2', '\x41', 
-		'=', '\x3', '\x2', '\x2', '\x2', '\x41', '>', '\x3', '\x2', '\x2', '\x2', 
-		'\x41', '?', '\x3', '\x2', '\x2', '\x2', '\x41', '@', '\x3', '\x2', '\x2', 
-		'\x2', '\x42', '\x3', '\x3', '\x2', '\x2', '\x2', '\x43', '\x46', '\a', 
-		'\x3', '\x2', '\x2', '\x44', 'G', '\x5', '\xE', '\b', '\x2', '\x45', 'G', 
-		'\x5', '\x16', '\f', '\x2', '\x46', '\x44', '\x3', '\x2', '\x2', '\x2', 
-		'\x46', '\x45', '\x3', '\x2', '\x2', '\x2', 'G', '\x5', '\x3', '\x2', 
-		'\x2', '\x2', 'H', 'K', '\a', '\x4', '\x2', '\x2', 'I', 'L', '\x5', '\x10', 
-		'\t', '\x2', 'J', 'L', '\x5', '\x18', '\r', '\x2', 'K', 'I', '\x3', '\x2', 
-		'\x2', '\x2', 'K', 'J', '\x3', '\x2', '\x2', '\x2', 'L', '\a', '\x3', 
-		'\x2', '\x2', '\x2', 'M', 'N', '\a', '\x5', '\x2', '\x2', 'N', 'R', '\x5', 
-		'\x18', '\r', '\x2', 'O', 'S', '\x5', '*', '\x16', '\x2', 'P', 'S', '\x5', 
-		',', '\x17', '\x2', 'Q', 'S', '\x5', '.', '\x18', '\x2', 'R', 'O', '\x3', 
-		'\x2', '\x2', '\x2', 'R', 'P', '\x3', '\x2', '\x2', '\x2', 'R', 'Q', '\x3', 
-		'\x2', '\x2', '\x2', 'S', '\t', '\x3', '\x2', '\x2', '\x2', 'T', 'W', 
-		'\a', '\x6', '\x2', '\x2', 'U', 'X', '\x5', '\x10', '\t', '\x2', 'V', 
-		'X', '\x5', '\x18', '\r', '\x2', 'W', 'U', '\x3', '\x2', '\x2', '\x2', 
-		'W', 'V', '\x3', '\x2', '\x2', '\x2', 'X', '\v', '\x3', '\x2', '\x2', 
-		'\x2', 'Y', 'Z', '\a', '\a', '\x2', '\x2', 'Z', '[', '\x5', '\x18', '\r', 
-		'\x2', '[', '\r', '\x3', '\x2', '\x2', '\x2', '\\', '^', '\x5', '$', '\x13', 
-		'\x2', ']', '\\', '\x3', '\x2', '\x2', '\x2', ']', '^', '\x3', '\x2', 
-		'\x2', '\x2', '^', '_', '\x3', '\x2', '\x2', '\x2', '_', '`', '\x5', '\x10', 
-		'\t', '\x2', '`', '\x61', '\a', '\b', '\x2', '\x2', '\x61', '\x62', '\x5', 
-		'\x12', '\n', '\x2', '\x62', '\x63', '\a', '\t', '\x2', '\x2', '\x63', 
-		'\xF', '\x3', '\x2', '\x2', '\x2', '\x64', '\x65', '\a', '\n', '\x2', 
-		'\x2', '\x65', '\x66', '\a', '\x1C', '\x2', '\x2', '\x66', 'g', '\a', 
-		'\v', '\x2', '\x2', 'g', 'h', '\a', '\f', '\x2', '\x2', 'h', 'i', '\a', 
-		'\x1C', '\x2', '\x2', 'i', '\x11', '\x3', '\x2', '\x2', '\x2', 'j', 'o', 
-		'\x5', '\x14', '\v', '\x2', 'k', 'l', '\a', '\r', '\x2', '\x2', 'l', 'n', 
-		'\x5', '\x14', '\v', '\x2', 'm', 'k', '\x3', '\x2', '\x2', '\x2', 'n', 
-		'q', '\x3', '\x2', '\x2', '\x2', 'o', 'm', '\x3', '\x2', '\x2', '\x2', 
-		'o', 'p', '\x3', '\x2', '\x2', '\x2', 'p', '\x13', '\x3', '\x2', '\x2', 
-		'\x2', 'q', 'o', '\x3', '\x2', '\x2', '\x2', 'r', 's', '\a', '\x1C', '\x2', 
-		'\x2', 's', '\x15', '\x3', '\x2', '\x2', '\x2', 't', 'u', '\x5', '\x18', 
-		'\r', '\x2', 'u', 'v', '\a', '\b', '\x2', '\x2', 'v', 'w', '\x5', '\x1A', 
-		'\xE', '\x2', 'w', 'x', '\a', '\t', '\x2', '\x2', 'x', '\x17', '\x3', 
-		'\x2', '\x2', '\x2', 'y', 'z', '\a', '\f', '\x2', '\x2', 'z', '{', '\a', 
-		'\x1C', '\x2', '\x2', '{', '\x19', '\x3', '\x2', '\x2', '\x2', '|', '\x81', 
-		'\x5', '\x1C', '\xF', '\x2', '}', '~', '\a', '\r', '\x2', '\x2', '~', 
-		'\x80', '\x5', '\x1C', '\xF', '\x2', '\x7F', '}', '\x3', '\x2', '\x2', 
-		'\x2', '\x80', '\x83', '\x3', '\x2', '\x2', '\x2', '\x81', '\x7F', '\x3', 
-		'\x2', '\x2', '\x2', '\x81', '\x82', '\x3', '\x2', '\x2', '\x2', '\x82', 
-		'\x1B', '\x3', '\x2', '\x2', '\x2', '\x83', '\x81', '\x3', '\x2', '\x2', 
-		'\x2', '\x84', '\x85', '\a', '\x1C', '\x2', '\x2', '\x85', '\x89', '\a', 
-		'\x1C', '\x2', '\x2', '\x86', '\x88', '\x5', '\x1E', '\x10', '\x2', '\x87', 
-		'\x86', '\x3', '\x2', '\x2', '\x2', '\x88', '\x8B', '\x3', '\x2', '\x2', 
-		'\x2', '\x89', '\x87', '\x3', '\x2', '\x2', '\x2', '\x89', '\x8A', '\x3', 
-		'\x2', '\x2', '\x2', '\x8A', '\x1D', '\x3', '\x2', '\x2', '\x2', '\x8B', 
-		'\x89', '\x3', '\x2', '\x2', '\x2', '\x8C', '\x92', '\x5', '\"', '\x12', 
-		'\x2', '\x8D', '\x92', '\x5', '$', '\x13', '\x2', '\x8E', '\x92', '\x5', 
-		'&', '\x14', '\x2', '\x8F', '\x92', '\x5', '(', '\x15', '\x2', '\x90', 
-		'\x92', '\x5', ' ', '\x11', '\x2', '\x91', '\x8C', '\x3', '\x2', '\x2', 
-		'\x2', '\x91', '\x8D', '\x3', '\x2', '\x2', '\x2', '\x91', '\x8E', '\x3', 
-		'\x2', '\x2', '\x2', '\x91', '\x8F', '\x3', '\x2', '\x2', '\x2', '\x91', 
-		'\x90', '\x3', '\x2', '\x2', '\x2', '\x92', '\x1F', '\x3', '\x2', '\x2', 
-		'\x2', '\x93', '\x94', '\a', '\xE', '\x2', '\x2', '\x94', '!', '\x3', 
-		'\x2', '\x2', '\x2', '\x95', '\x96', '\a', '\xF', '\x2', '\x2', '\x96', 
-		'\x97', '\a', '\x10', '\x2', '\x2', '\x97', '#', '\x3', '\x2', '\x2', 
-		'\x2', '\x98', '\x99', '\a', '\x11', '\x2', '\x2', '\x99', '%', '\x3', 
-		'\x2', '\x2', '\x2', '\x9A', '\x9B', '\a', '\x12', '\x2', '\x2', '\x9B', 
-		'\x9C', '\a', '\x13', '\x2', '\x2', '\x9C', '\'', '\x3', '\x2', '\x2', 
-		'\x2', '\x9D', '\x9E', '\a', '\x14', '\x2', '\x2', '\x9E', '\x9F', '\a', 
-		'\x13', '\x2', '\x2', '\x9F', '\xA0', '\a', '\x15', '\x2', '\x2', '\xA0', 
-		'\xA1', '\a', '\x1C', '\x2', '\x2', '\xA1', '\xA2', '\a', '\b', '\x2', 
-		'\x2', '\xA2', '\xA3', '\a', '\x1C', '\x2', '\x2', '\xA3', '\xA4', '\a', 
-		'\t', '\x2', '\x2', '\xA4', ')', '\x3', '\x2', '\x2', '\x2', '\xA5', '\xA6', 
-		'\a', '\x16', '\x2', '\x2', '\xA6', '\xA7', '\x5', '\x1C', '\xF', '\x2', 
-		'\xA7', '+', '\x3', '\x2', '\x2', '\x2', '\xA8', '\xA9', '\a', '\x4', 
-		'\x2', '\x2', '\xA9', '\xAA', '\a', '\x1C', '\x2', '\x2', '\xAA', '-', 
-		'\x3', '\x2', '\x2', '\x2', '\xAB', '\xAC', '\a', '\x5', '\x2', '\x2', 
-		'\xAC', '\xAD', '\x5', '\x1C', '\xF', '\x2', '\xAD', '/', '\x3', '\x2', 
-		'\x2', '\x2', '\xAE', '\xAF', '\a', '\x17', '\x2', '\x2', '\xAF', '\x31', 
-		'\x3', '\x2', '\x2', '\x2', '\xB0', '\xB1', '\a', '\x18', '\x2', '\x2', 
-		'\xB1', '\x33', '\x3', '\x2', '\x2', '\x2', '\xB2', '\xB3', '\a', '\x19', 
-		'\x2', '\x2', '\xB3', '\x35', '\x3', '\x2', '\x2', '\x2', '\xB4', '\xB5', 
-		'\a', '\x1A', '\x2', '\x2', '\xB5', '\xB6', '\a', '\x1B', '\x2', '\x2', 
-		'\xB6', '\x37', '\x3', '\x2', '\x2', '\x2', '\f', '\x41', '\x46', 'K', 
-		'R', 'W', ']', 'o', '\x81', '\x89', '\x91',
+		'\x38', ':', '<', '>', '\x2', '\x2', '\x2', '\xD5', '\x2', 'I', '\x3', 
+		'\x2', '\x2', '\x2', '\x4', 'K', '\x3', '\x2', '\x2', '\x2', '\x6', 'P', 
+		'\x3', '\x2', '\x2', '\x2', '\b', 'T', '\x3', '\x2', '\x2', '\x2', '\n', 
+		'\\', '\x3', '\x2', '\x2', '\x2', '\f', '_', '\x3', '\x2', '\x2', '\x2', 
+		'\xE', '\x66', '\x3', '\x2', '\x2', '\x2', '\x10', 'n', '\x3', '\x2', 
+		'\x2', '\x2', '\x12', 'r', '\x3', '\x2', '\x2', '\x2', '\x14', 'v', '\x3', 
+		'\x2', '\x2', '\x2', '\x16', 'z', '\x3', '\x2', '\x2', '\x2', '\x18', 
+		'\x84', '\x3', '\x2', '\x2', '\x2', '\x1A', '\x8A', '\x3', '\x2', '\x2', 
+		'\x2', '\x1C', '\x92', '\x3', '\x2', '\x2', '\x2', '\x1E', '\x94', '\x3', 
+		'\x2', '\x2', '\x2', ' ', '\x9C', '\x3', '\x2', '\x2', '\x2', '\"', '\x9F', 
+		'\x3', '\x2', '\x2', '\x2', '$', '\xA7', '\x3', '\x2', '\x2', '\x2', '&', 
+		'\xB4', '\x3', '\x2', '\x2', '\x2', '(', '\xB6', '\x3', '\x2', '\x2', 
+		'\x2', '*', '\xB8', '\x3', '\x2', '\x2', '\x2', ',', '\xBB', '\x3', '\x2', 
+		'\x2', '\x2', '.', '\xBD', '\x3', '\x2', '\x2', '\x2', '\x30', '\xC0', 
+		'\x3', '\x2', '\x2', '\x2', '\x32', '\xC8', '\x3', '\x2', '\x2', '\x2', 
+		'\x34', '\xCB', '\x3', '\x2', '\x2', '\x2', '\x36', '\xCE', '\x3', '\x2', 
+		'\x2', '\x2', '\x38', '\xD1', '\x3', '\x2', '\x2', '\x2', ':', '\xD3', 
+		'\x3', '\x2', '\x2', '\x2', '<', '\xD5', '\x3', '\x2', '\x2', '\x2', '>', 
+		'\xD7', '\x3', '\x2', '\x2', '\x2', '@', 'J', '\x5', '\x4', '\x3', '\x2', 
+		'\x41', 'J', '\x5', '\b', '\x5', '\x2', '\x42', 'J', '\x5', '\f', '\a', 
+		'\x2', '\x43', 'J', '\x5', '\xE', '\b', '\x2', '\x44', 'J', '\x5', '\x14', 
+		'\v', '\x2', '\x45', 'J', '\x5', '\x38', '\x1D', '\x2', '\x46', 'J', '\x5', 
+		':', '\x1E', '\x2', 'G', 'J', '\x5', '<', '\x1F', '\x2', 'H', 'J', '\x5', 
+		'>', ' ', '\x2', 'I', '@', '\x3', '\x2', '\x2', '\x2', 'I', '\x41', '\x3', 
+		'\x2', '\x2', '\x2', 'I', '\x42', '\x3', '\x2', '\x2', '\x2', 'I', '\x43', 
+		'\x3', '\x2', '\x2', '\x2', 'I', '\x44', '\x3', '\x2', '\x2', '\x2', 'I', 
+		'\x45', '\x3', '\x2', '\x2', '\x2', 'I', '\x46', '\x3', '\x2', '\x2', 
+		'\x2', 'I', 'G', '\x3', '\x2', '\x2', '\x2', 'I', 'H', '\x3', '\x2', '\x2', 
+		'\x2', 'J', '\x3', '\x3', '\x2', '\x2', '\x2', 'K', 'N', '\a', '\x3', 
+		'\x2', '\x2', 'L', 'O', '\x5', '\x16', '\f', '\x2', 'M', 'O', '\x5', '\x1E', 
+		'\x10', '\x2', 'N', 'L', '\x3', '\x2', '\x2', '\x2', 'N', 'M', '\x3', 
+		'\x2', '\x2', '\x2', 'O', '\x5', '\x3', '\x2', '\x2', '\x2', 'P', 'Q', 
+		'\a', '\x4', '\x2', '\x2', 'Q', 'R', '\a', '\x5', '\x2', '\x2', 'R', 'S', 
+		'\a', '\x6', '\x2', '\x2', 'S', '\a', '\x3', '\x2', '\x2', '\x2', 'T', 
+		'W', '\a', '\a', '\x2', '\x2', 'U', 'X', '\x5', '\x18', '\r', '\x2', 'V', 
+		'X', '\x5', ' ', '\x11', '\x2', 'W', 'U', '\x3', '\x2', '\x2', '\x2', 
+		'W', 'V', '\x3', '\x2', '\x2', '\x2', 'X', 'Z', '\x3', '\x2', '\x2', '\x2', 
+		'Y', '[', '\x5', '\n', '\x6', '\x2', 'Z', 'Y', '\x3', '\x2', '\x2', '\x2', 
+		'Z', '[', '\x3', '\x2', '\x2', '\x2', '[', '\t', '\x3', '\x2', '\x2', 
+		'\x2', '\\', ']', '\a', '\x4', '\x2', '\x2', ']', '^', '\a', '\x6', '\x2', 
+		'\x2', '^', '\v', '\x3', '\x2', '\x2', '\x2', '_', '`', '\a', '\b', '\x2', 
+		'\x2', '`', '\x64', '\x5', ' ', '\x11', '\x2', '\x61', '\x65', '\x5', 
+		'\x32', '\x1A', '\x2', '\x62', '\x65', '\x5', '\x34', '\x1B', '\x2', '\x63', 
+		'\x65', '\x5', '\x36', '\x1C', '\x2', '\x64', '\x61', '\x3', '\x2', '\x2', 
+		'\x2', '\x64', '\x62', '\x3', '\x2', '\x2', '\x2', '\x64', '\x63', '\x3', 
+		'\x2', '\x2', '\x2', '\x65', '\r', '\x3', '\x2', '\x2', '\x2', '\x66', 
+		'j', '\a', '\t', '\x2', '\x2', 'g', 'k', '\x5', '\x18', '\r', '\x2', 'h', 
+		'k', '\x5', '\x10', '\t', '\x2', 'i', 'k', '\x5', '\x12', '\n', '\x2', 
+		'j', 'g', '\x3', '\x2', '\x2', '\x2', 'j', 'h', '\x3', '\x2', '\x2', '\x2', 
+		'j', 'i', '\x3', '\x2', '\x2', '\x2', 'k', '\xF', '\x3', '\x2', '\x2', 
+		'\x2', 'l', 'm', '\a', '\n', '\x2', '\x2', 'm', 'o', '\a', '\v', '\x2', 
+		'\x2', 'n', 'l', '\x3', '\x2', '\x2', '\x2', 'n', 'o', '\x3', '\x2', '\x2', 
+		'\x2', 'o', 'p', '\x3', '\x2', '\x2', '\x2', 'p', 'q', '\x5', ' ', '\x11', 
+		'\x2', 'q', '\x11', '\x3', '\x2', '\x2', '\x2', 'r', 's', '\a', '\f', 
+		'\x2', '\x2', 's', 't', '\a', '\v', '\x2', '\x2', 't', 'u', '\x5', ' ', 
+		'\x11', '\x2', 'u', '\x13', '\x3', '\x2', '\x2', '\x2', 'v', 'w', '\a', 
+		'\r', '\x2', '\x2', 'w', 'x', '\x5', ' ', '\x11', '\x2', 'x', '\x15', 
+		'\x3', '\x2', '\x2', '\x2', 'y', '{', '\x5', ',', '\x17', '\x2', 'z', 
+		'y', '\x3', '\x2', '\x2', '\x2', 'z', '{', '\x3', '\x2', '\x2', '\x2', 
+		'{', '|', '\x3', '\x2', '\x2', '\x2', '|', '~', '\x5', '\x18', '\r', '\x2', 
+		'}', '\x7F', '\x5', '\x6', '\x4', '\x2', '~', '}', '\x3', '\x2', '\x2', 
+		'\x2', '~', '\x7F', '\x3', '\x2', '\x2', '\x2', '\x7F', '\x80', '\x3', 
+		'\x2', '\x2', '\x2', '\x80', '\x81', '\a', '\xE', '\x2', '\x2', '\x81', 
+		'\x82', '\x5', '\x1A', '\xE', '\x2', '\x82', '\x83', '\a', '\xF', '\x2', 
+		'\x2', '\x83', '\x17', '\x3', '\x2', '\x2', '\x2', '\x84', '\x85', '\a', 
+		'\x10', '\x2', '\x2', '\x85', '\x86', '\a', ' ', '\x2', '\x2', '\x86', 
+		'\x87', '\a', '\v', '\x2', '\x2', '\x87', '\x88', '\a', '\x11', '\x2', 
+		'\x2', '\x88', '\x89', '\a', ' ', '\x2', '\x2', '\x89', '\x19', '\x3', 
+		'\x2', '\x2', '\x2', '\x8A', '\x8F', '\x5', '\x1C', '\xF', '\x2', '\x8B', 
+		'\x8C', '\a', '\x12', '\x2', '\x2', '\x8C', '\x8E', '\x5', '\x1C', '\xF', 
+		'\x2', '\x8D', '\x8B', '\x3', '\x2', '\x2', '\x2', '\x8E', '\x91', '\x3', 
+		'\x2', '\x2', '\x2', '\x8F', '\x8D', '\x3', '\x2', '\x2', '\x2', '\x8F', 
+		'\x90', '\x3', '\x2', '\x2', '\x2', '\x90', '\x1B', '\x3', '\x2', '\x2', 
+		'\x2', '\x91', '\x8F', '\x3', '\x2', '\x2', '\x2', '\x92', '\x93', '\a', 
+		' ', '\x2', '\x2', '\x93', '\x1D', '\x3', '\x2', '\x2', '\x2', '\x94', 
+		'\x96', '\x5', ' ', '\x11', '\x2', '\x95', '\x97', '\x5', '\x6', '\x4', 
+		'\x2', '\x96', '\x95', '\x3', '\x2', '\x2', '\x2', '\x96', '\x97', '\x3', 
+		'\x2', '\x2', '\x2', '\x97', '\x98', '\x3', '\x2', '\x2', '\x2', '\x98', 
+		'\x99', '\a', '\xE', '\x2', '\x2', '\x99', '\x9A', '\x5', '\"', '\x12', 
+		'\x2', '\x9A', '\x9B', '\a', '\xF', '\x2', '\x2', '\x9B', '\x1F', '\x3', 
+		'\x2', '\x2', '\x2', '\x9C', '\x9D', '\a', '\x11', '\x2', '\x2', '\x9D', 
+		'\x9E', '\a', ' ', '\x2', '\x2', '\x9E', '!', '\x3', '\x2', '\x2', '\x2', 
+		'\x9F', '\xA4', '\x5', '$', '\x13', '\x2', '\xA0', '\xA1', '\a', '\x12', 
+		'\x2', '\x2', '\xA1', '\xA3', '\x5', '$', '\x13', '\x2', '\xA2', '\xA0', 
+		'\x3', '\x2', '\x2', '\x2', '\xA3', '\xA6', '\x3', '\x2', '\x2', '\x2', 
+		'\xA4', '\xA2', '\x3', '\x2', '\x2', '\x2', '\xA4', '\xA5', '\x3', '\x2', 
+		'\x2', '\x2', '\xA5', '#', '\x3', '\x2', '\x2', '\x2', '\xA6', '\xA4', 
+		'\x3', '\x2', '\x2', '\x2', '\xA7', '\xA8', '\a', ' ', '\x2', '\x2', '\xA8', 
+		'\xAC', '\a', ' ', '\x2', '\x2', '\xA9', '\xAB', '\x5', '&', '\x14', '\x2', 
+		'\xAA', '\xA9', '\x3', '\x2', '\x2', '\x2', '\xAB', '\xAE', '\x3', '\x2', 
+		'\x2', '\x2', '\xAC', '\xAA', '\x3', '\x2', '\x2', '\x2', '\xAC', '\xAD', 
+		'\x3', '\x2', '\x2', '\x2', '\xAD', '%', '\x3', '\x2', '\x2', '\x2', '\xAE', 
+		'\xAC', '\x3', '\x2', '\x2', '\x2', '\xAF', '\xB5', '\x5', '*', '\x16', 
+		'\x2', '\xB0', '\xB5', '\x5', ',', '\x17', '\x2', '\xB1', '\xB5', '\x5', 
+		'.', '\x18', '\x2', '\xB2', '\xB5', '\x5', '\x30', '\x19', '\x2', '\xB3', 
+		'\xB5', '\x5', '(', '\x15', '\x2', '\xB4', '\xAF', '\x3', '\x2', '\x2', 
+		'\x2', '\xB4', '\xB0', '\x3', '\x2', '\x2', '\x2', '\xB4', '\xB1', '\x3', 
+		'\x2', '\x2', '\x2', '\xB4', '\xB2', '\x3', '\x2', '\x2', '\x2', '\xB4', 
+		'\xB3', '\x3', '\x2', '\x2', '\x2', '\xB5', '\'', '\x3', '\x2', '\x2', 
+		'\x2', '\xB6', '\xB7', '\a', '\x13', '\x2', '\x2', '\xB7', ')', '\x3', 
+		'\x2', '\x2', '\x2', '\xB8', '\xB9', '\a', '\x5', '\x2', '\x2', '\xB9', 
+		'\xBA', '\a', '\x14', '\x2', '\x2', '\xBA', '+', '\x3', '\x2', '\x2', 
+		'\x2', '\xBB', '\xBC', '\a', '\x15', '\x2', '\x2', '\xBC', '-', '\x3', 
+		'\x2', '\x2', '\x2', '\xBD', '\xBE', '\a', '\x16', '\x2', '\x2', '\xBE', 
+		'\xBF', '\a', '\x17', '\x2', '\x2', '\xBF', '/', '\x3', '\x2', '\x2', 
+		'\x2', '\xC0', '\xC1', '\a', '\x18', '\x2', '\x2', '\xC1', '\xC2', '\a', 
+		'\x17', '\x2', '\x2', '\xC2', '\xC3', '\a', '\x19', '\x2', '\x2', '\xC3', 
+		'\xC4', '\a', ' ', '\x2', '\x2', '\xC4', '\xC5', '\a', '\xE', '\x2', '\x2', 
+		'\xC5', '\xC6', '\a', ' ', '\x2', '\x2', '\xC6', '\xC7', '\a', '\xF', 
+		'\x2', '\x2', '\xC7', '\x31', '\x3', '\x2', '\x2', '\x2', '\xC8', '\xC9', 
+		'\a', '\x1A', '\x2', '\x2', '\xC9', '\xCA', '\x5', '$', '\x13', '\x2', 
+		'\xCA', '\x33', '\x3', '\x2', '\x2', '\x2', '\xCB', '\xCC', '\a', '\a', 
+		'\x2', '\x2', '\xCC', '\xCD', '\a', ' ', '\x2', '\x2', '\xCD', '\x35', 
+		'\x3', '\x2', '\x2', '\x2', '\xCE', '\xCF', '\a', '\b', '\x2', '\x2', 
+		'\xCF', '\xD0', '\x5', '$', '\x13', '\x2', '\xD0', '\x37', '\x3', '\x2', 
+		'\x2', '\x2', '\xD1', '\xD2', '\a', '\x1B', '\x2', '\x2', '\xD2', '\x39', 
+		'\x3', '\x2', '\x2', '\x2', '\xD3', '\xD4', '\a', '\x1C', '\x2', '\x2', 
+		'\xD4', ';', '\x3', '\x2', '\x2', '\x2', '\xD5', '\xD6', '\a', '\x1D', 
+		'\x2', '\x2', '\xD6', '=', '\x3', '\x2', '\x2', '\x2', '\xD7', '\xD8', 
+		'\a', '\x1E', '\x2', '\x2', '\xD8', '\xD9', '\a', '\x1F', '\x2', '\x2', 
+		'\xD9', '?', '\x3', '\x2', '\x2', '\x2', '\x10', 'I', 'N', 'W', 'Z', '\x64', 
+		'j', 'n', 'z', '~', '\x8F', '\x96', '\xA4', '\xAC', '\xB4',
 	};
 
 	public static readonly ATN _ATN =

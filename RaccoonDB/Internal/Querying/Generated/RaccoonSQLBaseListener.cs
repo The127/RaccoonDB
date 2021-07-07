@@ -60,6 +60,18 @@ public partial class RaccoonSQLBaseListener : IRaccoonSQLListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitCreateQuery([NotNull] RaccoonSQLParser.CreateQueryContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.ifNotExists"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIfNotExists([NotNull] RaccoonSQLParser.IfNotExistsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.ifNotExists"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIfNotExists([NotNull] RaccoonSQLParser.IfNotExistsContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.dropQuery"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -71,6 +83,18 @@ public partial class RaccoonSQLBaseListener : IRaccoonSQLListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitDropQuery([NotNull] RaccoonSQLParser.DropQueryContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.ifExists"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterIfExists([NotNull] RaccoonSQLParser.IfExistsContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.ifExists"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitIfExists([NotNull] RaccoonSQLParser.IfExistsContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.alterQuery"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -95,6 +119,30 @@ public partial class RaccoonSQLBaseListener : IRaccoonSQLListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitExplainQuery([NotNull] RaccoonSQLParser.ExplainQueryContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.explainColumnsOnTable"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterExplainColumnsOnTable([NotNull] RaccoonSQLParser.ExplainColumnsOnTableContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.explainColumnsOnTable"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitExplainColumnsOnTable([NotNull] RaccoonSQLParser.ExplainColumnsOnTableContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.explainIndicesOnTable"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterExplainIndicesOnTable([NotNull] RaccoonSQLParser.ExplainIndicesOnTableContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RaccoonSQLParser.explainIndicesOnTable"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitExplainIndicesOnTable([NotNull] RaccoonSQLParser.ExplainIndicesOnTableContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="RaccoonSQLParser.truncateQuery"/>.
 	/// <para>The default implementation does nothing.</para>
